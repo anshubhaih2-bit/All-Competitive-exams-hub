@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Exam Mock Test</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+body { background-color: #f0f4f8; padding: 15px; display: flex; justify-content: center; }
+.app-container { width: 100%; max-width: 480px; min-height: 95vh; }
+
+.header { display: flex; align-items: center; background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.menu-btn { font-size: 24px; cursor: pointer; margin-right: 20px; color: #333; }
+.logo { font-size: 20px; font-weight: bold; color: #ff6f00; }
+.logo span { color: #2c3e50; }
+
+.search-container { margin-bottom: 20px; }
+.search-container input { width: 100%; padding: 12px 20px; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 15px; outline: none; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: 0.3s; }
+.search-container input:focus { border-color: #007bff; box-shadow: 0 0 8px rgba(0,123,255,0.2); }
+
+.test-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 15px; display: flex; box-shadow: 0 6px 15px rgba(0,0,0,0.04); border-left: 6px solid #ddd; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.test-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+.card-left { margin-right: 15px; display: flex; align-items: center; }
+.icon-circle { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; background: #fff; box-shadow: 0 3px 6px rgba(0,0,0,0.08); }
+.card-right { flex: 1; }
+.card-right h3 { font-size: 18px; color: #2c3e50; margin-bottom: 5px; }
+.subtitle { font-size: 13px; color: #666; margin-bottom: 12px; line-height: 1.4; }
+
+.start-btn, .expand-btn { background: #e1f5fe; color: #0277bd; border: 1px solid #b3e5fc; padding: 7px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s; }
+.start-btn:hover { background: #0277bd; color: white; box-shadow: 0 3px 8px rgba(2,119,189,0.3); }
+
+.ssc-theme { border-left-color: #9c27b0; background: #f3e5f5; }
+.ssc-theme .expand-btn { background: #e1bee7; color: #4a148c; border-color: #ce93d8; }
+.daroga-theme { border-left-color: #1a237e; background: #e8eaf6; }
+.daroga-theme .start-btn { background: #c5cae9; color: #1a237e; border-color: #9fa8da; }
+.police-theme { border-left-color: #00bcd4; background: #e0f7fa; }
+.police-theme .start-btn { background: #b2ebf2; color: #006064; border-color: #80deea; }
+.delhi-theme { border-left-color: #3f51b5; background: #e8eaf6; }
+.delhi-theme .start-btn { background: #c5cae9; color: #283593; border-color: #9fa8da; }
+.railway-theme { border-left-color: #ff9800; background: #fff3e0; }
+.railway-theme .start-btn { background: #ffe0b2; color: #e65100; border-color: #ffcc80; }
+.bank-theme { border-left-color: #4caf50; background: #e8f5e9; }
+.bank-theme .start-btn { background: #c8e6c9; color: #1b5e20; border-color: #a5d6a7; }
+.agniveer-theme { border-left-color: #558b2f; background: #f1f8e9; }
+.agniveer-theme .start-btn { background: #dcedc8; color: #33691e; border-color: #c5e1a5; }
+
+.sub-category-list { background: #fff; border: 2px solid #e1bee7; border-radius: 14px; padding: 5px; margin-top: -10px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.sub-item { padding: 12px 15px; border-bottom: 1px solid #f3e5f5; cursor: pointer; display: flex; flex-direction: column; transition: 0.2s; }
+.sub-item:last-child { border-bottom: none; border-radius: 0 0 12px 12px; }
+.sub-item:first-child { border-radius: 12px 12px 0 0; }
+.sub-item:hover { background: #f3e5f5; }
+.sub-item span { font-weight: bold; color: #4a148c; font-size: 15px; }
+.sub-item small { color: #666; font-size: 12px; margin-top: 3px; }
+
+#quiz-screen { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.back-btn { background: #e9ecef; color: #495057; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; font-weight: bold; transition: 0.2s; }
+.back-btn:hover { background: #dee2e6; }
+.quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+#timer { font-size: 18px; font-weight: bold; color: #d32f2f; background: #ffebee; padding: 6px 14px; border-radius: 20px; }
+#subject-tag { display: inline-block; background: #ff6f00; color: white; padding: 6px 14px; border-radius: 8px; font-weight: bold; font-size: 13px; margin-bottom: 15px; }
+#question-number { font-size: 14px; color: #888; margin-bottom: 8px; }
+#question-text { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 20px; line-height: 1.5; }
+.option-btn { display: block; width: 100%; padding: 14px; margin-bottom: 12px; background: #f8f9fa; border: 2px solid #e9ecef; border-radius: 12px; text-align: left; cursor: pointer; font-size: 15px; transition: 0.2s; }
+.option-btn:hover { background: #e8f5e9; border-color: #81c784; }
+.option-btn.selected { background: #e3f2fd !important; border-color: #2196f3 !important; font-weight: bold; color: #0d47a1; }
+
+.navigation-box { display: flex; justify-content: space-between; margin-top: 25px; gap: 15px; }
+.nav-btn { flex: 1; padding: 14px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; border: none; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.nav-btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+.btn-primary { background: #007bff; color: white; }
+.btn-primary:hover { background: #0056b3; box-shadow: 0 4px 12px rgba(0,123,255,0.3); }
+.btn-secondary { background: #6c757d; color: white; }
+.btn-secondary:hover:not(:disabled) { background: #545b62; box-shadow: 0 4px 12px rgba(108,117,125,0.3); }
+
+.submit-early-btn { width: 100%; margin-top: 20px; padding: 14px; background: #dc3545; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.submit-early-btn:hover { background: #bd2130; box-shadow: 0 4px 12px rgba(220,53,69,0.3); }
+
+/* Result screen */
+#result-screen { background: white; padding: 30px 20px; border-radius: 16px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+#result-screen h2 { color: #2c3e50; margin-bottom: 20px; }
+.result-box { background: #e8f5e9; border: 2px solid #a5d6a7; border-radius: 14px; padding: 20px; margin-bottom: 20px; }
+.result-box #score-text { font-size: 24px; font-weight: bold; color: #1b5e20; margin-bottom: 8px; }
+.result-box p { color: #555; font-size: 14px; }
+.restart-btn { width: 100%; padding: 14px; background: #007bff; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; }
+.restart-btn:hover { background: #0056b3; }
+
+.hidden { display: none !important; }
+#question-text{white-space:pre-line}
+#side-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90}
+#side-menu{position:fixed;top:0;left:0;bottom:0;width:270px;background:#fff;z-index:100;transform:translateX(-100%);transition:.25s;padding:20px 0;overflow-y:auto;box-shadow:4px 0 16px rgba(0,0,0,.2)}
+#side-menu.open{transform:translateX(0)}
+#side-menu h4{padding:0 20px 12px;color:#ff6f00;border-bottom:1px solid #eee;margin-bottom:6px}
+#side-menu div.mi{padding:13px 20px;cursor:pointer;font-size:15px;color:#2c3e50;border-bottom:1px solid #f3f3f3}
+#side-menu div.mi:hover{background:#fff3e0}
+#palette{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:18px}
+#palette button{padding:6px 0;font-size:11px;border:1px solid #ccc;border-radius:6px;background:#eee;cursor:pointer}
+#palette .ans{background:#4caf50;color:#fff;border-color:#4caf50}
+#palette .mrk{background:#ff9800;color:#fff;border-color:#ff9800}
+#palette .cur{outline:3px solid #2196f3}
+.mark-btn{width:100%;margin-top:12px;padding:10px;border:2px solid #ff9800;background:#fff8e1;color:#e65100;border-radius:10px;font-weight:bold;cursor:pointer}
+.legend{font-size:11px;color:#666;margin-top:8px}
+.stat-row{display:flex;justify-content:space-between;padding:8px 4px;border-bottom:1px solid #eee;font-size:14px;text-align:left}
+.sec-title{margin:18px 0 6px;font-weight:bold;color:#2c3e50;text-align:left}
+.rv{text-align:left;border:2px solid #eee;border-radius:12px;padding:12px;margin-bottom:10px;white-space:pre-line;font-size:14px}
+.rv.ok{border-color:#a5d6a7;background:#f1f8e9}.rv.bad{border-color:#ef9a9a;background:#ffebee}.rv.skip{border-color:#ffe082;background:#fffde7}
+.rv small{display:block;margin-top:6px;font-weight:bold}
+</style>
+</head>
+<body>
+<div id="side-overlay" class="hidden" onclick="toggleMenu()"></div>
+<nav id="side-menu">
+  <h4>🎯 All Exam Mock Test</h4>
+  <div class="mi" onclick="toggleMenu();goHome()">🏠 Home / होम</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('SSC CGL')">🏢 SSC CGL</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('SSC CHSL')">🏢 SSC CHSL</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('SSC GD')">🏢 SSC GD</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('Daroga')">🌟 Daroga</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('Police')">👮 Police</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('Delhi Police')">🚔 Delhi Police</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('Railway')">🚂 Railway</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('Bank')">💰 Bank</div>
+  <div class="mi" onclick="toggleMenu();startQuiz('Agniveer')">🪖 Agniveer</div>
+</nav>
+<div class="app-container">
+  <header class="header">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="logo">🎯 <span>All Exam Mock Test</span></div>
+  </header>
+
+  <div class="search-container" id="search-bar-box">
+    <input type="text" id="search-input" placeholder="अपना एग्जाम सर्च करें..." onkeyup="filterExams()">
+  </div>
+
+  <div id="home-screen">
+    <div class="exam-card-wrapper">
+      <div class="test-card ssc-theme" onclick="toggleSubCategory()">
+        <div class="card-left"><div class="icon-circle">🏢</div></div>
+        <div class="card-right">
+          <h3>SSC [CGL / CHSL / GD]</h3>
+          <p class="subtitle">क्लिक करके अपना पसंदीदा SSC एग्जाम चुनें</p>
+          <button class="expand-btn">एग्जाम चुनें ▾</button>
+        </div>
+      </div>
+      <div id="ssc-sub-list" class="sub-category-list hidden">
+        <div class="sub-item" onclick="startQuiz('SSC CGL')"><span>➔ SSC CGL</span><small>100 Q • 60 Min • Maths, Reasoning, GK/GS, English</small></div>
+        <div class="sub-item" onclick="startQuiz('SSC CHSL')"><span>➔ SSC CHSL</span><small>100 Q • 60 Min • Maths, Reasoning, GK/GS, English</small></div>
+        <div class="sub-item" onclick="startQuiz('SSC GD')"><span>➔ SSC GD</span><small>80 Q • 60 Min • Maths, Reasoning, GK/GS, Hindi/Eng</small></div>
+      </div>
+    </div>
+
+    <div class="test-card daroga-theme exam-item" onclick="startQuiz('Daroga')">
+      <div class="card-left"><div class="icon-circle">🌟</div></div>
+      <div class="card-right"><h3>Daroga [Sub Inspector]</h3><p class="subtitle">160 Q • 120 Min • GK, Science, Maths, Reasoning</p><button class="start-btn">Start Test →</button></div>
+    </div>
+
+    <div class="test-card police-theme exam-item" onclick="startQuiz('Police')">
+      <div class="card-left"><div class="icon-circle">👮</div></div>
+      <div class="card-right"><h3>Police [Constable]</h3><p class="subtitle">150 Q • 120 Min • GK, Science, Maths, Reasoning</p><button class="start-btn">Start Test →</button></div>
+    </div>
+
+    <div class="test-card delhi-theme exam-item" onclick="startQuiz('Delhi Police')">
+      <div class="card-left"><div class="icon-circle">🚔</div></div>
+      <div class="card-right"><h3>Delhi Police [Executive]</h3><p class="subtitle">100 Q • 90 Min • GK/GS, Reasoning, Maths, Computer</p><button class="start-btn">Start Test →</button></div>
+    </div>
+
+    <div class="test-card railway-theme exam-item" onclick="startQuiz('Railway')">
+      <div class="card-left"><div class="icon-circle">🚂</div></div>
+      <div class="card-right"><h3>Railway [NTPC / Group D]</h3><p class="subtitle">100 Q • 90 Min • Maths, Reasoning, Science & GK</p><button class="start-btn">Start Test →</button></div>
+    </div>
+
+    <div class="test-card bank-theme exam-item" onclick="startQuiz('Bank')">
+      <div class="card-left"><div class="icon-circle">💰</div></div>
+      <div class="card-right"><h3>Bank [PO / Clerk]</h3><p class="subtitle">100 Q • 60 Min • Maths, Reasoning, English</p><button class="start-btn">Start Test →</button></div>
+    </div>
+
+    <div class="test-card agniveer-theme exam-item" onclick="startQuiz('Agniveer')">
+      <div class="card-left"><div class="icon-circle">🪖</div></div>
+      <div class="card-right"><h3>Agniveer [Defense]</h3><p class="subtitle">50 Q • 60 Min • GK, Science, Maths, Reasoning</p><button class="start-btn">Start Test →</button></div>
+    </div>
+  </div>
+
+  <div id="quiz-screen" class="hidden">
+    <button class="back-btn" onclick="goHome()">← Back to Main Menu</button>
+    <div class="quiz-header">
+      <h3 id="quiz-title">Exam Test</h3>
+      <div id="timer">60:00</div>
+    </div>
+    <div id="subject-tag">Subject: Loading...</div>
+    <div class="quiz-body">
+      <div id="question-number">Question 1 of 100</div>
+      <p id="question-text">प्रश्न लोड हो रहा है...</p>
+      <div id="options-container"></div>
+      <div class="navigation-box">
+        <button id="prev-btn" class="nav-btn btn-secondary" onclick="event.stopPropagation(); changeQuestion(-1)">◀ Previous</button>
+        <button id="next-btn" class="nav-btn btn-primary" onclick="event.stopPropagation(); changeQuestion(1)">Next ▶</button>
+      </div>
+      <button class="mark-btn" onclick="event.stopPropagation(); toggleMark()">🚩 Mark for Review / समीक्षा हेतु चिह्नित करें</button>
+      <div id="palette"></div>
+      <div class="legend">🟩 Attempted &nbsp; 🟧 Marked &nbsp; ⬜ Not attempted &nbsp; 🟦 Current</div>
+      <button class="submit-early-btn" onclick="event.stopPropagation(); endQuiz()">Submit Test 🎯</button>
+    </div>
+  </div>
+
+  <div id="result-screen" class="hidden">
+    <h2>टेस्ट पूरा हुआ! 🎉</h2>
+    <div class="result-box">
+      <p id="score-text">आपका स्कोर: 0/100</p>
+      <p id="score-detail">समय समाप्त या आपके द्वारा सबमिट किया गया।</p>
+    </div>
+    <div id="subject-scores"></div>
+    <div id="history-box"></div>
+    <div class="sec-title">📋 Answer Review / उत्तर समीक्षा</div>
+    <div id="review-list"></div>
+    <button class="restart-btn" onclick="goHome()">होम पेज पर जाएँ</button>
+  </div>
+</div>
+
+<script>
+const realQuestionsData = {
+  "General Knowledge": [
+    { q: "भारत का राष्ट्रीय फूल कौन सा है?", options: ["गुलाब", "कमल", "गेंदा", "सूरजमुखी"], answer: "कमल" },
+    { q: "भारत की राजधानी क्या है?", options: ["मुंबई", "कोलकाता", "नई दिल्ली", "चेन्नई"], answer: "नई दिल्ली" },
+    { q: "विश्व का सबसे बड़ा महाद्वीप कौन सा है?", options: ["अफ्रीका", "यूरोप", "एशिया", "ऑस्ट्रेलिया"], answer: "एशिया" },
+    { q: "भारत के प्रथम प्रधानमंत्री कौन थे?", options: ["महात्मा गांधी", "जवाहरलाल नेहरू", "डॉ. राजेंद्र प्रसाद", "भगत सिंह"], answer: "जवाहरलाल नेहरू" },
+    { q: "भारत का राष्ट्रीय पशु कौन सा है?", options: ["शेर", "हाथी", "बाघ", "तेंदुआ"], answer: "बाघ" },
+    { q: "भारत का राष्ट्रीय पक्षी कौन सा है?", options: ["कबूतर", "मोर", "तोता", "कोयल"], answer: "मोर" },
+    { q: "भारत का संविधान कब लागू हुआ था?", options: ["15 अगस्त 1947", "26 जनवरी 1950", "26 नवंबर 1949", "2 अक्टूबर 1950"], answer: "26 जनवरी 1950" },
+    { q: "भारत के प्रथम राष्ट्रपति कौन थे?", options: ["डॉ. राजेंद्र प्रसाद", "सर्वपल्ली राधाकृष्णन", "डॉ. जाकिर हुसैन", "वी. वी. गिरि"], answer: "डॉ. राजेंद्र प्रसाद" },
+    { q: "भारत की राष्ट्रीय नदी कौन सी है?", options: ["यमुना", "गंगा", "गोदावरी", "नर्मदा"], answer: "गंगा" },
+    { q: "क्षेत्रफल की दृष्टि से भारत का सबसे बड़ा राज्य कौन सा है?", options: ["मध्य प्रदेश", "राजस्थान", "महाराष्ट्र", "उत्तर प्रदेश"], answer: "राजस्थान" },
+    { q: "ताजमहल किस शहर में स्थित है?", options: ["दिल्ली", "जयपुर", "आगरा", "लखनऊ"], answer: "आगरा" },
+    { q: "बिहार की राजधानी कौन सी है?", options: ["गया", "पटना", "रांची", "मुजफ्फरपुर"], answer: "पटना" },
+    { q: "झारखंड की राजधानी कौन सी है?", options: ["जमशेदपुर", "धनबाद", "रांची", "बोकारो"], answer: "रांची" },
+    { q: "विश्व की सबसे ऊँची पर्वत चोटी कौन सी है?", options: ["K2", "कंचनजंगा", "माउंट एवरेस्ट", "नंदा देवी"], answer: "माउंट एवरेस्ट" },
+    { q: "\"जय जवान, जय किसान\" का नारा किसने दिया था?", options: ["जवाहरलाल नेहरू", "इंदिरा गांधी", "लाल बहादुर शास्त्री", "सरदार पटेल"], answer: "लाल बहादुर शास्त्री" },
+    { q: "संविधान की प्रारूप समिति के अध्यक्ष कौन थे?", options: ["महात्मा गांधी", "डॉ. भीमराव अंबेडकर", "सरदार पटेल", "सुभाष चंद्र बोस"], answer: "डॉ. भीमराव अंबेडकर" },
+    { q: "भारत में वर्तमान में कुल कितने राज्य हैं?", options: ["28", "29", "27", "30"], answer: "28" },
+    { q: "\"लौह पुरुष\" के नाम से किसे जाना जाता है?", options: ["जवाहरलाल नेहरू", "सरदार वल्लभभाई पटेल", "भगत सिंह", "लाला लाजपत राय"], answer: "सरदार वल्लभभाई पटेल" },
+    { q: "भारत का राष्ट्रगान किसने लिखा है?", options: ["बंकिमचंद्र चटर्जी", "रवींद्रनाथ टैगोर", "मोहम्मद इकबाल", "सुभद्रा कुमारी चौहान"], answer: "रवींद्रनाथ टैगोर" },
+    { q: "ओलंपिक खेल कितने वर्षों में एक बार आयोजित होते हैं?", options: ["2 वर्ष", "3 वर्ष", "4 वर्ष", "5 वर्ष"], answer: "4 वर्ष" },
+    { q: "कोणार्क का सूर्य मंदिर किस राज्य में स्थित है?", options: ["ओडिशा", "गुजरात", "तमिलनाडु", "कर्नाटक"], answer: "ओडिशा" },
+    { q: "भारतीय रिज़र्व बैंक (RBI) का मुख्यालय कहाँ है?", options: ["दिल्ली", "मुंबई", "कोलकाता", "चेन्नई"], answer: "मुंबई" },
+    { q: "महात्मा गांधी ने दांडी मार्च (नमक सत्याग्रह) किस वर्ष शुरू किया था?", options: ["1920", "1930", "1942", "1947"], answer: "1930" },
+    { q: "भारत को अंग्रेजों से आज़ादी किस वर्ष मिली?", options: ["1942", "1945", "1947", "1950"], answer: "1947" },
+    { q: "भारत के राष्ट्रपति का कार्यकाल कितने वर्षों का होता है?", options: ["4 वर्ष", "5 वर्ष", "6 वर्ष", "7 वर्ष"], answer: "5 वर्ष" }
+  ],
+  "General Science": [
+    { q: "पानी का रासायनिक सूत्र क्या है?", options: ["CO2", "H2O", "O2", "NaCl"], answer: "H2O" },
+    { q: "मनुष्य के शरीर में कुल कितनी हड्डियाँ होती हैं?", options: ["206", "306", "210", "196"], answer: "206" },
+    { q: "गुरुत्वाकर्षण (Gravity) की खोज किसने की थी?", options: ["अल्बर्ट आइंस्टीन", "इसहाक न्यूटन", "गैलीलियो", "थॉमस एडिसन"], answer: "इसहाक न्यूटन" },
+    { q: "विटामिन सी का सबसे अच्छा स्रोत क्या है?", options: ["दूध", "आँवला/नींबू", "सेब", "गाजर"], answer: "आँवला/नींबू" },
+    { q: "पौधे अपना भोजन किस प्रक्रिया से बनाते हैं?", options: ["श्वसन", "प्रकाश संश्लेषण", "वाष्पोत्सर्जन", "परासरण"], answer: "प्रकाश संश्लेषण" },
+    { q: "मानव रक्त का लाल रंग किस पदार्थ के कारण होता है?", options: ["क्लोरोफिल", "हीमोग्लोबिन", "इंसुलिन", "मेलानिन"], answer: "हीमोग्लोबिन" },
+    { q: "सूर्य के प्रकाश से शरीर को कौन सा विटामिन मिलता है?", options: ["विटामिन A", "विटामिन B", "विटामिन C", "विटामिन D"], answer: "विटामिन D" },
+    { q: "ध्वनि किस माध्यम में नहीं चल सकती?", options: ["हवा", "जल", "निर्वात", "लोहा"], answer: "निर्वात" },
+    { q: "सबसे हल्की गैस कौन सी है?", options: ["ऑक्सीजन", "हाइड्रोजन", "नाइट्रोजन", "कार्बन डाइऑक्साइड"], answer: "हाइड्रोजन" },
+    { q: "मनुष्य के हृदय में कितने कक्ष होते हैं?", options: ["दो", "तीन", "चार", "पाँच"], answer: "चार" },
+    { q: "निर्वात में प्रकाश की चाल लगभग कितनी होती है?", options: ["3 × 10^8 मी/से", "3 × 10^6 मी/से", "3 × 10^5 मी/से", "3 × 10^10 मी/से"], answer: "3 × 10^8 मी/से" },
+    { q: "ऊर्जा का SI मात्रक क्या है?", options: ["वाट", "जूल", "न्यूटन", "पास्कल"], answer: "जूल" },
+    { q: "बल का SI मात्रक क्या है?", options: ["जूल", "न्यूटन", "वाट", "एम्पियर"], answer: "न्यूटन" },
+    { q: "सौरमंडल का सबसे बड़ा ग्रह कौन सा है?", options: ["शनि", "बृहस्पति", "पृथ्वी", "मंगल"], answer: "बृहस्पति" },
+    { q: "हड्डियों और दाँतों को मजबूत बनाने वाला खनिज कौन सा है?", options: ["लोहा", "कैल्शियम", "सोडियम", "आयोडीन"], answer: "कैल्शियम" },
+    { q: "रतौंधी रोग किस विटामिन की कमी से होता है?", options: ["विटामिन A", "विटामिन B", "विटामिन C", "विटामिन K"], answer: "विटामिन A" },
+    { q: "पृथ्वी का एकमात्र प्राकृतिक उपग्रह कौन सा है?", options: ["मंगल", "चंद्रमा", "टाइटन", "फोबोस"], answer: "चंद्रमा" },
+    { q: "साधारण नमक का रासायनिक नाम क्या है?", options: ["सोडियम कार्बोनेट", "सोडियम क्लोराइड", "पोटैशियम क्लोराइड", "कैल्शियम क्लोराइड"], answer: "सोडियम क्लोराइड" },
+    { q: "रक्त समूहों (A, B, O) की खोज किसने की थी?", options: ["लुई पाश्चर", "कार्ल लैंडस्टाइनर", "अलेक्जेंडर फ्लेमिंग", "एडवर्ड जेनर"], answer: "कार्ल लैंडस्टाइनर" },
+    { q: "सामान्य वायुदाब पर पानी का क्वथनांक (उबलने का तापमान) कितना होता है?", options: ["0°C", "50°C", "100°C", "150°C"], answer: "100°C" },
+    { q: "मानव शरीर का सबसे बड़ा अंग कौन सा है?", options: ["यकृत", "त्वचा", "फेफड़े", "हृदय"], answer: "त्वचा" },
+    { q: "चुंबक किस पदार्थ को आकर्षित करता है?", options: ["लकड़ी", "प्लास्टिक", "लोहा", "काँच"], answer: "लोहा" },
+    { q: "पत्तियों का हरा रंग किस वर्णक के कारण होता है?", options: ["क्लोरोफिल", "कैरोटीन", "हीमोग्लोबिन", "ज़ैंथोफिल"], answer: "क्लोरोफिल" },
+    { q: "वायुमंडल में सबसे अधिक मात्रा में कौन सी गैस पाई जाती है?", options: ["ऑक्सीजन", "नाइट्रोजन", "कार्बन डाइऑक्साइड", "आर्गन"], answer: "नाइट्रोजन" },
+    { q: "मलेरिया रोग किसके काटने से फैलता है?", options: ["मादा एनोफिलीज मच्छर", "घरेलू मक्खी", "चूहा", "मधुमक्खी"], answer: "मादा एनोफिलीज मच्छर" }
+  ],
+  "Mathematics": [
+    { q: "यदि 5x = 25 है, तो x का मान क्या होगा?", options: ["2", "4", "5", "10"], answer: "5" },
+    { q: "एक वर्ग (Square) का क्षेत्रफल क्या होगा जिसकी एक भुजा 6 सेमी है?", options: ["12 वर्ग सेमी", "24 वर्ग सेमी", "36 वर्ग सेमी", "48 वर्ग सेमी"], answer: "36 वर्ग सेमी" },
+    { q: "सबसे छोटी अभाज्य संख्या (Prime Number) कौन सी है?", options: ["0", "1", "2", "3"], answer: "2" },
+    { q: "100 का 20% कितना होगा?", options: ["10", "20", "30", "40"], answer: "20" },
+    { q: "15 + 27 कितना होगा?", options: ["32", "42", "52", "41"], answer: "42" },
+    { q: "12 × 8 कितना होगा?", options: ["86", "96", "108", "88"], answer: "96" },
+    { q: "144 का वर्गमूल क्या है?", options: ["11", "12", "13", "14"], answer: "12" },
+    { q: "8 का घन (Cube) क्या होगा?", options: ["64", "216", "512", "256"], answer: "512" },
+    { q: "10 सेमी लंबाई और 5 सेमी चौड़ाई वाले आयत का क्षेत्रफल क्या है?", options: ["15 वर्ग सेमी", "30 वर्ग सेमी", "50 वर्ग सेमी", "100 वर्ग सेमी"], answer: "50 वर्ग सेमी" },
+    { q: "2 घंटे में कितने मिनट होते हैं?", options: ["60", "90", "120", "180"], answer: "120" },
+    { q: "25% को भिन्न (Fraction) के रूप में लिखने पर क्या मिलेगा?", options: ["1/2", "1/4", "1/5", "1/3"], answer: "1/4" },
+    { q: "3, 5 और 7 का औसत (Average) क्या है?", options: ["4", "5", "6", "7"], answer: "5" },
+    { q: "7 × 9 कितना होगा?", options: ["56", "63", "72", "54"], answer: "63" },
+    { q: "200 का 15% कितना होगा?", options: ["20", "25", "30", "35"], answer: "30" },
+    { q: "7 सेमी त्रिज्या वाले वृत्त की परिधि क्या होगी? (π = 22/7)", options: ["22 सेमी", "44 सेमी", "154 सेमी", "49 सेमी"], answer: "44 सेमी" },
+    { q: "1000 में से 375 घटाने पर कितना बचेगा?", options: ["625", "675", "725", "575"], answer: "625" },
+    { q: "₹500 पर 10% वार्षिक दर से 2 वर्ष का साधारण ब्याज कितना होगा?", options: ["₹50", "₹100", "₹150", "₹200"], answer: "₹100" },
+    { q: "36 और 48 का महत्तम समापवर्तक (HCF) क्या है?", options: ["6", "12", "18", "24"], answer: "12" },
+    { q: "6 और 8 का लघुत्तम समापवर्त्य (LCM) क्या है?", options: ["12", "24", "48", "14"], answer: "24" },
+    { q: "किसी त्रिभुज के तीनों कोणों का योग कितना होता है?", options: ["90°", "180°", "270°", "360°"], answer: "180°" },
+    { q: "एक कार 60 किमी/घंटा की चाल से 3 घंटे चलती है, तो वह कितनी दूरी तय करेगी?", options: ["120 किमी", "150 किमी", "180 किमी", "200 किमी"], answer: "180 किमी" },
+    { q: "0.5 + 0.25 का मान क्या होगा?", options: ["0.55", "0.75", "0.65", "0.85"], answer: "0.75" },
+    { q: "यदि x + 7 = 15 है, तो x का मान क्या होगा?", options: ["6", "7", "8", "9"], answer: "8" },
+    { q: "9² − 8² का मान क्या होगा?", options: ["1", "17", "81", "64"], answer: "17" },
+    { q: "₹80 की वस्तु पर 25% की छूट देने पर उसकी कीमत कितनी होगी?", options: ["₹55", "₹60", "₹65", "₹70"], answer: "₹60" }
+  ],
+  "Reasoning": [
+    { q: "यदि A=1, B=2, C=3 है, तो CAT का मान क्या होगा? (C=3, A=1, T=20)", options: ["20", "22", "24", "26"], answer: "24" },
+    { q: "विषम (Odd) शब्द को चुनिए:", options: ["कार", "बस", "ट्रक", "हवाई जहाज"], answer: "हवाई जहाज" },
+    { q: "जैसे 'दिन' का विलोम 'रात' है, वैसे ही 'सफेद' का विलोम क्या होगा?", options: ["नीला", "हरा", "काला", "पीला"], answer: "काला" },
+    { q: "श्रृंखला को पूरा करें: 2, 4, 6, 8, ?", options: ["9", "10", "11", "12"], answer: "10" },
+    { q: "श्रृंखला को पूरा करें: 5, 10, 15, 20, ?", options: ["22", "25", "30", "35"], answer: "25" },
+    { q: "श्रृंखला को पूरा करें: 3, 6, 12, 24, ?", options: ["36", "48", "30", "42"], answer: "48" },
+    { q: "अक्षर श्रृंखला पूरी करें: A, C, E, G, ?", options: ["H", "I", "J", "K"], answer: "I" },
+    { q: "पक्षी : आकाश :: मछली : ?", options: ["ज़मीन", "जल", "पेड़", "रेत"], answer: "जल" },
+    { q: "विषम (Odd) को चुनिए:", options: ["सेब", "आम", "गाजर", "केला"], answer: "गाजर" },
+    { q: "विषम संख्या चुनिए (जो अभाज्य नहीं है):", options: ["3", "5", "7", "9"], answer: "9" },
+    { q: "यदि आज सोमवार है, तो 3 दिन बाद कौन सा दिन होगा?", options: ["बुधवार", "गुरुवार", "शुक्रवार", "मंगलवार"], answer: "गुरुवार" },
+    { q: "यदि परसों शुक्रवार है, तो आज कौन सा दिन है?", options: ["मंगलवार", "बुधवार", "गुरुवार", "सोमवार"], answer: "बुधवार" },
+    { q: "3:00 बजे घड़ी की घंटे और मिनट की सुइयों के बीच कितने डिग्री का कोण बनता है?", options: ["30°", "60°", "90°", "180°"], answer: "90°" },
+    { q: "राम, श्याम से लंबा है और श्याम, मोहन से लंबा है। तीनों में सबसे छोटा कौन है?", options: ["राम", "श्याम", "मोहन", "कहा नहीं जा सकता / Cannot say"], answer: "मोहन" },
+    { q: "यदि CAT को DBU लिखा जाता है, तो DOG को कैसे लिखा जाएगा?", options: ["EPH", "ENH", "EPG", "DPH"], answer: "EPH" },
+    { q: "डॉक्टर : अस्पताल :: शिक्षक : ?", options: ["बाज़ार", "विद्यालय", "थाना", "बैंक"], answer: "विद्यालय" },
+    { q: "श्रृंखला को पूरा करें: 1, 4, 9, 16, ?", options: ["20", "24", "25", "36"], answer: "25" },
+    { q: "श्रृंखला को पूरा करें: 100, 90, 80, 70, ?", options: ["50", "60", "65", "75"], answer: "60" },
+    { q: "विषम अक्षर चुनिए:", options: ["A", "E", "K", "O"], answer: "K" },
+    { q: "यदि BAD = 7 (2+1+4) है, तो CAB का मान क्या होगा?", options: ["5", "6", "7", "8"], answer: "6" },
+    { q: "मेरे पिता के पिता का मेरे साथ क्या संबंध है?", options: ["नाना", "दादा", "चाचा", "ताऊ"], answer: "दादा" },
+    { q: "एक व्यक्ति पूर्व दिशा की ओर मुँह करके खड़ा है। वह बाएँ मुड़ता है, अब उसका मुँह किस दिशा में होगा?", options: ["उत्तर", "दक्षिण", "पश्चिम", "पूर्व"], answer: "उत्तर" },
+    { q: "सबसे बड़ी संख्या चुनिए:", options: ["4521", "4512", "4251", "4215"], answer: "4521" },
+    { q: "विषम को चुनिए:", options: ["चाँदी", "सोना", "लोहा", "प्लास्टिक"], answer: "प्लास्टिक" },
+    { q: "श्रृंखला को पूरा करें: 1, 2, 4, 8, 16, ?", options: ["24", "32", "30", "20"], answer: "32" }
+  ],
+  "Computer Awareness": [
+    { q: "कंप्यूटर का मस्तिष्क (Brain) किसे कहा जाता है?", options: ["RAM", "CPU", "Hard Disk", "Monitor"], answer: "CPU" },
+    { q: "WWW का पूर्ण रूप (Full Form) क्या है?", options: ["World Wide Web", "World Whole Web", "Wide World Web", "Web World Wide"], answer: "World Wide Web" },
+    { q: "RAM का पूर्ण रूप क्या है?", options: ["Random Access Memory", "Read Access Memory", "Rapid Action Memory", "Run Auto Memory"], answer: "Random Access Memory" },
+    { q: "CPU का पूर्ण रूप क्या है?", options: ["Central Processing Unit", "Central Program Unit", "Control Processing Unit", "Computer Personal Unit"], answer: "Central Processing Unit" },
+    { q: "कीबोर्ड किस प्रकार का उपकरण है?", options: ["इनपुट डिवाइस", "आउटपुट डिवाइस", "स्टोरेज डिवाइस", "प्रोसेसिंग डिवाइस"], answer: "इनपुट डिवाइस" },
+    { q: "मॉनिटर किस प्रकार का उपकरण है?", options: ["इनपुट डिवाइस", "आउटपुट डिवाइस", "स्टोरेज डिवाइस", "नेटवर्क डिवाइस"], answer: "आउटपुट डिवाइस" },
+    { q: "1 बाइट (Byte) में कितने बिट होते हैं?", options: ["4", "8", "16", "32"], answer: "8" },
+    { q: "कीबोर्ड शॉर्टकट Ctrl + C का उपयोग किसलिए होता है?", options: ["कॉपी करना", "पेस्ट करना", "कट करना", "सेव करना"], answer: "कॉपी करना" },
+    { q: "कीबोर्ड शॉर्टकट Ctrl + V का उपयोग किसलिए होता है?", options: ["कॉपी करना", "पेस्ट करना", "प्रिंट करना", "सेव करना"], answer: "पेस्ट करना" },
+    { q: "कीबोर्ड शॉर्टकट Ctrl + Z का उपयोग किसलिए होता है?", options: ["पूर्ववत करना (Undo)", "सेव करना", "सब चुनना", "बंद करना"], answer: "पूर्ववत करना (Undo)" },
+    { q: "MS Word की डिफ़ॉल्ट फाइल एक्सटेंशन क्या है?", options: [".xlsx", ".docx", ".pptx", ".pdf"], answer: ".docx" },
+    { q: "प्रिंटर किस प्रकार का उपकरण है?", options: ["इनपुट डिवाइस", "आउटपुट डिवाइस", "प्रोसेसिंग डिवाइस", "मेमोरी"], answer: "आउटपुट डिवाइस" },
+    { q: "निम्न में से कौन सा एक वेब ब्राउज़र है?", options: ["MS Word", "MS Excel", "Google Chrome", "MS Paint"], answer: "Google Chrome" },
+    { q: "URL का पूर्ण रूप क्या है?", options: ["Uniform Resource Locator", "Universal Resource Link", "Uniform Resource Link", "United Resource Locator"], answer: "Uniform Resource Locator" },
+    { q: "PDF का पूर्ण रूप क्या है?", options: ["Portable Document Format", "Printed Document File", "Public Data Format", "Personal Document Form"], answer: "Portable Document Format" },
+    { q: "कंप्यूटर की डेटा संग्रहण की सबसे छोटी इकाई क्या है?", options: ["बाइट", "बिट", "किलोबाइट", "नाइबल"], answer: "बिट" },
+    { q: "MS Excel किस प्रकार का सॉफ्टवेयर है?", options: ["वर्ड प्रोसेसर", "स्प्रेडशीट", "प्रेजेंटेशन", "डेटाबेस ब्राउज़र"], answer: "स्प्रेडशीट" },
+    { q: "कंप्यूटर के उन भागों को क्या कहते हैं जिन्हें छुआ जा सकता है?", options: ["सॉफ्टवेयर", "हार्डवेयर", "फर्मवेयर", "मालवेयर"], answer: "हार्डवेयर" },
+    { q: "कंप्यूटर को वायरस से बचाने वाला सॉफ्टवेयर क्या कहलाता है?", options: ["एंटीवायरस", "ब्राउज़र", "कंपाइलर", "ड्राइवर"], answer: "एंटीवायरस" },
+    { q: "E-mail का पूर्ण रूप क्या है?", options: ["Electronic Mail", "Easy Mail", "Express Mail", "Electric Message"], answer: "Electronic Mail" },
+    { q: "Windows किस प्रकार का सॉफ्टवेयर है?", options: ["ऑपरेटिंग सिस्टम", "एप्लीकेशन सॉफ्टवेयर", "ब्राउज़र", "एंटीवायरस"], answer: "ऑपरेटिंग सिस्टम" },
+    { q: "1 किलोबाइट (KB) कितने बाइट के बराबर होता है?", options: ["100", "512", "1024", "2048"], answer: "1024" },
+    { q: "कंप्यूटर में डेटा को स्थायी रूप से कहाँ संग्रहित किया जाता है?", options: ["कैश मेमोरी", "हार्ड डिस्क", "रजिस्टर", "मॉनिटर"], answer: "हार्ड डिस्क" },
+    { q: "MS PowerPoint का उपयोग किसलिए किया जाता है?", options: ["प्रेजेंटेशन बनाने के लिए", "हिसाब-किताब के लिए", "चित्र संपादन के लिए", "वायरस हटाने के लिए"], answer: "प्रेजेंटेशन बनाने के लिए" },
+    { q: "कंप्यूटर के जनक (Father of Computer) किसे कहा जाता है?", options: ["चार्ल्स बैबेज", "बिल गेट्स", "स्टीव जॉब्स", "टिम बर्नर्स-ली"], answer: "चार्ल्स बैबेज" }
+  ],
+  "English Language": [
+    { q: "Choose the correct antonym of 'Beautiful':", options: ["Pretty", "Ugly", "Smart", "Cute"], answer: "Ugly" },
+    { q: "Identify the noun in the sentence: 'Ram is going to school.'", options: ["is", "going", "Ram", "to"], answer: "Ram" },
+    { q: "Choose the synonym of 'Happy':", options: ["Sad", "Joyful", "Angry", "Tired"], answer: "Joyful" },
+    { q: "Choose the antonym of 'Brave':", options: ["Strong", "Coward", "Hero", "Bold"], answer: "Coward" },
+    { q: "What is the plural of 'Child'?", options: ["Childs", "Childrens", "Children", "Childes"], answer: "Children" },
+    { q: "What is the past tense of 'Go'?", options: ["Gone", "Went", "Goed", "Going"], answer: "Went" },
+    { q: "Fill in the blank: She ___ a doctor.", options: ["are", "is", "am", "be"], answer: "is" },
+    { q: "Fill in the blank: I ___ to school every day.", options: ["goes", "go", "going", "gone"], answer: "go" },
+    { q: "Fill in the blank: He is ___ honest man.", options: ["a", "an", "the", "no article"], answer: "an" },
+    { q: "Choose the opposite of 'Early':", options: ["Soon", "Late", "Fast", "Quick"], answer: "Late" },
+    { q: "Choose the synonym of 'Big':", options: ["Small", "Tiny", "Large", "Thin"], answer: "Large" },
+    { q: "What is the past participle of 'Eat'?", options: ["Ate", "Eaten", "Eating", "Eats"], answer: "Eaten" },
+    { q: "Choose the correct spelling:", options: ["Recieve", "Receive", "Receve", "Receeve"], answer: "Receive" },
+    { q: "Fill in the blank: She was born ___ 1999.", options: ["on", "at", "in", "by"], answer: "in" },
+    { q: "Identify the verb in the sentence: 'Birds fly in the sky.'", options: ["Birds", "fly", "sky", "the"], answer: "fly" },
+    { q: "Identify the adjective in the sentence: 'The tall boy runs.'", options: ["The", "tall", "boy", "runs"], answer: "tall" },
+    { q: "Choose the antonym of 'Rich':", options: ["Poor", "Wealthy", "Happy", "Kind"], answer: "Poor" },
+    { q: "One word for 'a person who writes books':", options: ["Author", "Painter", "Singer", "Driver"], answer: "Author" },
+    { q: "What is the plural of 'Man'?", options: ["Mans", "Men", "Mens", "Manes"], answer: "Men" },
+    { q: "Choose the synonym of 'Quick':", options: ["Slow", "Lazy", "Fast", "Late"], answer: "Fast" },
+    { q: "Fill in the blank: They ___ playing cricket now.", options: ["is", "am", "are", "was"], answer: "are" },
+    { q: "What does the idiom 'Piece of cake' mean?", options: ["Very easy", "Very costly", "Very tasty", "Very small"], answer: "Very easy" },
+    { q: "Choose the correct sentence:", options: ["He go to school", "He goes to school", "He going school", "He gone to school"], answer: "He goes to school" },
+    { q: "Choose the antonym of 'Strong':", options: ["Weak", "Tough", "Mighty", "Hard"], answer: "Weak" },
+    { q: "Fill in the blank: She ___ not like tea.", options: ["do", "does", "is", "are"], answer: "does" }
+  ],
+  "Hindi/English": [
+    { q: "सदाचार का विलोम शब्द क्या है?", options: ["दुराचार", "अत्याचार", "अन्याय", "दुष्ट"], answer: "दुराचार" },
+    { q: "लम्बोदर में कौन सा समास है?", options: ["द्विगु", "बहुव्रीहि", "तत्पुरुष", "द्वंद्व"], answer: "बहुव्रीहि" },
+    { q: "'आँख' का पर्यायवाची शब्द कौन सा है?", options: ["नेत्र", "कर", "श्रवण", "मुख"], answer: "नेत्र" },
+    { q: "'सूर्य' का पर्यायवाची शब्द कौन सा है?", options: ["चंद्र", "दिनकर", "निशाकर", "सागर"], answer: "दिनकर" },
+    { q: "'अमृत' का विलोम शब्द क्या है?", options: ["विष", "जल", "सुधा", "रस"], answer: "विष" },
+    { q: "'उत्थान' का विलोम शब्द क्या है?", options: ["उन्नति", "पतन", "विकास", "प्रगति"], answer: "पतन" },
+    { q: "'लड़का' का स्त्रीलिंग रूप क्या है?", options: ["लड़की", "लड़कन", "लड़कनी", "बालक"], answer: "लड़की" },
+    { q: "'सुंदरता' किस प्रकार की संज्ञा है?", options: ["व्यक्तिवाचक", "जातिवाचक", "भाववाचक", "द्रव्यवाचक"], answer: "भाववाचक" },
+    { q: "'हिमालय' में कौन सी संज्ञा है?", options: ["व्यक्तिवाचक", "जातिवाचक", "भाववाचक", "समूहवाचक"], answer: "व्यक्तिवाचक" },
+    { q: "हिंदी भाषा किस लिपि में लिखी जाती है?", options: ["रोमन", "देवनागरी", "गुरुमुखी", "ब्राह्मी"], answer: "देवनागरी" },
+    { q: "'गंगाजल' में कौन सा समास है?", options: ["द्विगु", "तत्पुरुष", "कर्मधारय", "द्वंद्व"], answer: "तत्पुरुष" },
+    { q: "'माता-पिता' में कौन सा समास है?", options: ["द्वंद्व", "द्विगु", "बहुव्रीहि", "अव्ययीभाव"], answer: "द्वंद्व" },
+    { q: "'नीलकमल' में कौन सा समास है?", options: ["तत्पुरुष", "कर्मधारय", "द्वंद्व", "बहुव्रीहि"], answer: "कर्मधारय" },
+    { q: "'त्रिलोक' में कौन सा समास है?", options: ["द्विगु", "द्वंद्व", "तत्पुरुष", "कर्मधारय"], answer: "द्विगु" },
+    { q: "मुहावरा 'आँखों का तारा' का अर्थ क्या है?", options: ["बहुत प्यारा", "अंधा", "रोगी", "चोर"], answer: "बहुत प्यारा" },
+    { q: "मुहावरा 'नौ दो ग्यारह होना' का अर्थ क्या है?", options: ["भाग जाना", "धनवान होना", "गणित लगाना", "हार जाना"], answer: "भाग जाना" },
+    { q: "मुहावरा 'दाँतों तले उँगली दबाना' का अर्थ क्या है?", options: ["आश्चर्य करना", "डर जाना", "भूखा रहना", "क्रोध करना"], answer: "आश्चर्य करना" },
+    { q: "'जो ईश्वर में विश्वास रखता हो' के लिए एक शब्द क्या है?", options: ["नास्तिक", "आस्तिक", "भक्त", "साधु"], answer: "आस्तिक" },
+    { q: "'जो ईश्वर में विश्वास न रखता हो' के लिए एक शब्द क्या है?", options: ["आस्तिक", "नास्तिक", "पुजारी", "संत"], answer: "नास्तिक" },
+    { q: "'जिसका कोई शत्रु पैदा न हुआ हो' के लिए एक शब्द क्या है?", options: ["अजातशत्रु", "मित्र", "वीर", "निडर"], answer: "अजातशत्रु" },
+    { q: "शुद्ध वर्तनी वाला शब्द चुनिए:", options: ["विद्यार्थि", "विधार्थी", "विद्यार्थी", "विद्यारथी"], answer: "विद्यार्थी" },
+    { q: "पुल्लिंग शब्द चुनिए:", options: ["रोटी", "किताब", "घोड़ा", "कुर्सी"], answer: "घोड़ा" },
+    { q: "'वह पढ़ रहा है' वाक्य में कौन सा काल है?", options: ["भूतकाल", "वर्तमान काल", "भविष्य काल", "कोई नहीं"], answer: "वर्तमान काल" },
+    { q: "'गोदान' उपन्यास के लेखक कौन हैं?", options: ["जयशंकर प्रसाद", "मुंशी प्रेमचंद", "महादेवी वर्मा", "सूर्यकांत त्रिपाठी 'निराला'"], answer: "मुंशी प्रेमचंद" },
+    { q: "'पवन' का पर्यायवाची शब्द कौन सा है?", options: ["जल", "वायु", "अग्नि", "भूमि"], answer: "वायु" }
+  ]
+};
+
+// ====== अतिरिक्त प्रश्न (हर tuple: [प्रश्न, सही उत्तर, गलत1, गलत2, गलत3]) ======
+function addTuples(subject, tuples) {
+  tuples.forEach(t => {
+    realQuestionsData[subject].push({ q: t[0], options: [t[1], t[2], t[3], t[4]], answer: t[1] });
+  });
+}
+
+addTuples("General Knowledge", [
+  ["जनसंख्या की दृष्टि से भारत का सबसे बड़ा राज्य कौन सा है?", "उत्तर प्रदेश", "बिहार", "महाराष्ट्र", "पश्चिम बंगाल"],
+  ["क्षेत्रफल की दृष्टि से भारत का सबसे छोटा राज्य कौन सा है?", "गोवा", "सिक्किम", "त्रिपुरा", "केरल"],
+  ["भारत में सबसे लंबी तटरेखा वाला राज्य कौन सा है?", "गुजरात", "आंध्र प्रदेश", "तमिलनाडु", "महाराष्ट्र"],
+  ["भारत की सबसे ऊँची पर्वत चोटी (भारत के भीतर) कौन सी है?", "कंचनजंगा", "नंदा देवी", "कामेत", "अन्नपूर्णा"],
+  ["हीराकुंड बाँध किस नदी पर बना है?", "महानदी", "गंगा", "कृष्णा", "नर्मदा"],
+  ["भाखड़ा नांगल बाँध किस नदी पर बना है?", "सतलुज", "ब्यास", "रावी", "चिनाब"],
+  ["\"गुलाबी नगरी\" (Pink City) किस शहर को कहा जाता है?", "जयपुर", "जोधपुर", "उदयपुर", "आगरा"],
+  ["\"गेटवे ऑफ इंडिया\" किस शहर में स्थित है?", "मुंबई", "दिल्ली", "कोलकाता", "चेन्नई"],
+  ["लाल किले का निर्माण किसने करवाया था?", "शाहजहाँ", "अकबर", "औरंगजेब", "बाबर"],
+  ["पानीपत का प्रथम युद्ध किस वर्ष लड़ा गया था?", "1526", "1556", "1761", "1576"],
+  ["भारत में मुगल साम्राज्य की स्थापना किसने की थी?", "बाबर", "अकबर", "हुमायूँ", "शेरशाह सूरी"],
+  ["प्लासी का युद्ध किस वर्ष हुआ था?", "1757", "1764", "1857", "1707"],
+  ["1857 के विद्रोह की शुरुआत किस स्थान से हुई थी?", "मेरठ", "दिल्ली", "झाँसी", "कानपुर"],
+  ["भारत छोड़ो आंदोलन किस वर्ष शुरू हुआ था?", "1942", "1930", "1920", "1947"],
+  ["जलियाँवाला बाग हत्याकांड किस वर्ष हुआ था?", "1919", "1905", "1920", "1930"],
+  ["\"तुम मुझे खून दो, मैं तुम्हें आज़ादी दूँगा\" का नारा किसने दिया था?", "सुभाष चंद्र बोस", "भगत सिंह", "चंद्रशेखर आज़ाद", "बाल गंगाधर तिलक"],
+  ["\"स्वराज्य मेरा जन्मसिद्ध अधिकार है\" यह किसने कहा था?", "बाल गंगाधर तिलक", "गोपाल कृष्ण गोखले", "महात्मा गांधी", "लाला लाजपत राय"],
+  ["रानी लक्ष्मीबाई किस रियासत की रानी थीं?", "झाँसी", "ग्वालियर", "कानपुर", "मेरठ"],
+  ["भारत का पहला उपग्रह कौन सा था?", "आर्यभट्ट", "भास्कर", "रोहिणी", "इन्सैट-1A"],
+  ["ISRO का मुख्यालय कहाँ स्थित है?", "बेंगलुरु", "हैदराबाद", "मुंबई", "चेन्नई"],
+  ["चंद्रयान-3 की चंद्रमा पर सफल लैंडिंग किस वर्ष हुई?", "2023", "2019", "2021", "2024"],
+  ["अंतरिक्ष में जाने वाले पहले भारतीय कौन थे?", "राकेश शर्मा", "कल्पना चावला", "सुनीता विलियम्स", "रवीश मल्होत्रा"],
+  ["लोकसभा में वर्तमान में निर्वाचित सदस्यों की संख्या कितनी है?", "543", "545", "552", "250"],
+  ["राज्यसभा के सदस्यों की अधिकतम संख्या कितनी हो सकती है?", "250", "245", "238", "552"],
+  ["राज्यसभा का पदेन सभापति कौन होता है?", "उपराष्ट्रपति", "राष्ट्रपति", "प्रधानमंत्री", "लोकसभा अध्यक्ष"],
+  ["भारत का सर्वोच्च न्यायालय (Supreme Court) कहाँ स्थित है?", "नई दिल्ली", "मुंबई", "कोलकाता", "प्रयागराज"],
+  ["भारतीय संविधान में वर्तमान में कितने मौलिक अधिकार हैं?", "6", "5", "7", "8"],
+  ["भारतीय संविधान में वर्तमान में कितनी अनुसूचियाँ हैं?", "12", "8", "10", "9"],
+  ["संविधान सभा के अध्यक्ष कौन थे?", "डॉ. राजेंद्र प्रसाद", "डॉ. भीमराव अंबेडकर", "जवाहरलाल नेहरू", "सरदार पटेल"],
+  ["भारत का राष्ट्रीय वृक्ष कौन सा है?", "बरगद", "पीपल", "नीम", "आम"],
+  ["भारत का राष्ट्रीय फल कौन सा है?", "आम", "केला", "सेब", "अमरूद"],
+  ["भारत का राष्ट्रीय जलीय जीव कौन सा है?", "गंगा डॉल्फिन", "मगरमच्छ", "कछुआ", "व्हेल"],
+  ["भारत की मुद्रा का नाम क्या है?", "रुपया", "येन", "डॉलर", "टका"],
+  ["विश्व का सबसे बड़ा महासागर कौन सा है?", "प्रशांत महासागर", "अटलांटिक महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+  ["क्षेत्रफल की दृष्टि से विश्व का सबसे बड़ा देश कौन सा है?", "रूस", "कनाडा", "चीन", "अमेरिका"],
+  ["सबसे अधिक जनसंख्या वाला देश कौन सा है?", "भारत", "चीन", "अमेरिका", "इंडोनेशिया"],
+  ["विश्व का सबसे छोटा महाद्वीप कौन सा है?", "ऑस्ट्रेलिया", "यूरोप", "अंटार्कटिका", "अफ्रीका"],
+  ["नील नदी किस महाद्वीप में बहती है?", "अफ्रीका", "एशिया", "यूरोप", "दक्षिण अमेरिका"],
+  ["विश्व का सबसे बड़ा गर्म रेगिस्तान कौन सा है?", "सहारा", "गोबी", "थार", "कालाहारी"],
+  ["जापान की राजधानी कौन सी है?", "टोक्यो", "क्योटो", "ओसाका", "सियोल"],
+  ["संयुक्त राज्य अमेरिका की राजधानी कौन सी है?", "वाशिंगटन डी.सी.", "न्यूयॉर्क", "लॉस एंजिल्स", "शिकागो"],
+  ["ऑस्ट्रेलिया की राजधानी कौन सी है?", "कैनबरा", "सिडनी", "मेलबर्न", "पर्थ"],
+  ["संयुक्त राष्ट्र (UN) का मुख्यालय कहाँ है?", "न्यूयॉर्क", "जिनेवा", "पेरिस", "लंदन"],
+  ["संयुक्त राष्ट्र की स्थापना किस वर्ष हुई थी?", "1945", "1919", "1947", "1950"],
+  ["विश्व स्वास्थ्य संगठन (WHO) का मुख्यालय कहाँ है?", "जिनेवा", "न्यूयॉर्क", "पेरिस", "रोम"],
+  ["विश्व पर्यावरण दिवस कब मनाया जाता है?", "5 जून", "22 अप्रैल", "5 सितंबर", "1 दिसंबर"],
+  ["शिक्षक दिवस (भारत में) कब मनाया जाता है?", "5 सितंबर", "14 नवंबर", "2 अक्टूबर", "15 अगस्त"],
+  ["बाल दिवस भारत में कब मनाया जाता है?", "14 नवंबर", "5 सितंबर", "26 जनवरी", "2 अक्टूबर"],
+  ["गांधी जयंती कब मनाई जाती है?", "2 अक्टूबर", "30 जनवरी", "15 अगस्त", "14 नवंबर"],
+  ["राष्ट्रीय युवा दिवस (स्वामी विवेकानंद जयंती) कब मनाया जाता है?", "12 जनवरी", "15 जनवरी", "23 जनवरी", "26 जनवरी"],
+  ["क्रिकेट में मैदान पर एक टीम के कितने खिलाड़ी होते हैं?", "11", "9", "10", "12"],
+  ["फुटबॉल के एक सामान्य मैच की अवधि कितनी होती है?", "90 मिनट", "60 मिनट", "80 मिनट", "120 मिनट"],
+  ["टोक्यो ओलंपिक में भाला फेंक (जैवलिन) में स्वर्ण पदक किसने जीता?", "नीरज चोपड़ा", "अभिनव बिंद्रा", "पी. वी. सिंधु", "मीराबाई चानू"],
+  ["भारत का सर्वोच्च नागरिक सम्मान कौन सा है?", "भारत रत्न", "पद्म विभूषण", "पद्म भूषण", "पद्म श्री"],
+  ["युद्धकाल का सर्वोच्च वीरता पुरस्कार कौन सा है?", "परमवीर चक्र", "अशोक चक्र", "वीर चक्र", "कीर्ति चक्र"],
+  ["मदर टेरेसा को नोबेल शांति पुरस्कार किस वर्ष मिला?", "1979", "1969", "1989", "1997"],
+  ["रवींद्रनाथ टैगोर को नोबेल पुरस्कार किस रचना के लिए मिला?", "गीतांजलि", "गोदान", "आनंदमठ", "कामायनी"],
+  ["\"रामचरितमानस\" के रचयिता कौन हैं?", "तुलसीदास", "कबीरदास", "सूरदास", "वाल्मीकि"],
+  ["\"महाभारत\" के रचयिता कौन माने जाते हैं?", "वेदव्यास", "वाल्मीकि", "तुलसीदास", "कालिदास"],
+  ["\"अभिज्ञानशाकुंतलम्\" के रचयिता कौन हैं?", "कालिदास", "भास", "बाणभट्ट", "शूद्रक"],
+  ["\"अर्थशास्त्र\" के लेखक कौन हैं?", "कौटिल्य (चाणक्य)", "कालिदास", "बाणभट्ट", "विशाखदत्त"],
+  ["सम्राट अशोक ने कलिंग युद्ध के बाद कौन सा धर्म अपनाया?", "बौद्ध धर्म", "जैन धर्म", "हिंदू धर्म", "सिख धर्म"],
+  ["बौद्ध धर्म के संस्थापक कौन थे?", "गौतम बुद्ध", "महावीर स्वामी", "शंकराचार्य", "गुरु नानक"],
+  ["जैन धर्म के 24वें तीर्थंकर कौन थे?", "महावीर स्वामी", "पार्श्वनाथ", "ऋषभदेव", "नेमिनाथ"],
+  ["सिख धर्म के संस्थापक कौन थे?", "गुरु नानक देव", "गुरु गोबिंद सिंह", "गुरु अर्जन देव", "गुरु तेग बहादुर"],
+  ["बोधगया किस राज्य में स्थित है?", "बिहार", "झारखंड", "उत्तर प्रदेश", "ओडिशा"],
+  ["प्राचीन नालंदा विश्वविद्यालय के अवशेष किस राज्य में हैं?", "बिहार", "उत्तर प्रदेश", "पश्चिम बंगाल", "झारखंड"],
+  ["झारखंड राज्य का गठन किस तिथि को हुआ था?", "15 नवंबर 2000", "1 नवंबर 2000", "26 जनवरी 2000", "9 नवंबर 2000"],
+  ["छठ पर्व में मुख्य रूप से किस देवता की उपासना की जाती है?", "सूर्य देव", "चंद्र देव", "गणेश जी", "विष्णु जी"],
+  ["\"बिहार का शोक\" किस नदी को कहा जाता है?", "कोसी", "गंडक", "सोन", "बागमती"],
+  ["जमशेदपुर शहर किस उद्योग के लिए प्रसिद्ध है?", "लोहा-इस्पात उद्योग", "कपड़ा उद्योग", "चीनी उद्योग", "कागज उद्योग"],
+  ["भारत की संसद के कितने सदन हैं (राष्ट्रपति को छोड़कर)?", "2", "1", "3", "4"],
+  ["भारत में लोकसभा चुनाव सामान्यतः कितने वर्षों में होते हैं?", "5 वर्ष", "4 वर्ष", "6 वर्ष", "3 वर्ष"],
+  ["भारतीय संविधान में कौन सा दिवस \"गणतंत्र दिवस\" के रूप में मनाया जाता है?", "26 जनवरी", "15 अगस्त", "2 अक्टूबर", "14 अप्रैल"],
+  ["भारत के प्रथम उपराष्ट्रपति कौन थे?", "सर्वपल्ली राधाकृष्णन", "डॉ. जाकिर हुसैन", "वी. वी. गिरि", "डॉ. राजेंद्र प्रसाद"],
+  ["भारत की पहली महिला प्रधानमंत्री कौन थीं?", "इंदिरा गांधी", "सरोजिनी नायडू", "सुषमा स्वराज", "प्रतिभा पाटिल"]
+]);
+
+addTuples("General Science", [
+  ["रक्त को छानने (शुद्ध करने) का कार्य मुख्य रूप से कौन सा अंग करता है?", "गुर्दे", "आमाशय", "मस्तिष्क", "आँत"],
+  ["रक्त का थक्का जमने में सहायक विटामिन कौन सा है?", "विटामिन K", "विटामिन A", "विटामिन D", "विटामिन E"],
+  ["इंसुलिन की कमी से कौन सा रोग होता है?", "मधुमेह", "रतौंधी", "घेंघा", "एनीमिया"],
+  ["घेंघा रोग किस तत्व की कमी से होता है?", "आयोडीन", "लोहा", "कैल्शियम", "जिंक"],
+  ["एनीमिया (रक्ताल्पता) मुख्यतः किस तत्व की कमी से होता है?", "लोहा", "आयोडीन", "कैल्शियम", "सोडियम"],
+  ["स्कर्वी रोग किस विटामिन की कमी से होता है?", "विटामिन C", "विटामिन D", "विटामिन A", "विटामिन B12"],
+  ["रिकेट्स रोग किस विटामिन की कमी से होता है?", "विटामिन D", "विटामिन C", "विटामिन A", "विटामिन K"],
+  ["बेरी-बेरी रोग किस विटामिन की कमी से होता है?", "विटामिन B1", "विटामिन B12", "विटामिन C", "विटामिन D"],
+  ["ऑक्सीजन का रासायनिक प्रतीक क्या है?", "O", "Ox", "G", "Os"],
+  ["सोने (Gold) का रासायनिक प्रतीक क्या है?", "Au", "Ag", "Go", "Gd"],
+  ["चाँदी (Silver) का रासायनिक प्रतीक क्या है?", "Ag", "Au", "Si", "Sl"],
+  ["लोहे (Iron) का रासायनिक प्रतीक क्या है?", "Fe", "Ir", "F", "Li"],
+  ["सोडियम का रासायनिक प्रतीक क्या है?", "Na", "S", "So", "N"],
+  ["कार्बन डाइऑक्साइड का रासायनिक सूत्र क्या है?", "CO2", "CO", "C2O", "O2C"],
+  ["साधारण नमक का रासायनिक सूत्र क्या है?", "NaCl", "KCl", "NaOH", "HCl"],
+  ["तापमान का SI मात्रक क्या है?", "केल्विन", "सेल्सियस", "फारेनहाइट", "जूल"],
+  ["शक्ति (Power) का SI मात्रक क्या है?", "वाट", "जूल", "न्यूटन", "पास्कल"],
+  ["दाब (Pressure) का SI मात्रक क्या है?", "पास्कल", "न्यूटन", "वाट", "जूल"],
+  ["विद्युत धारा का SI मात्रक क्या है?", "एम्पियर", "वोल्ट", "ओम", "वाट"],
+  ["विद्युत प्रतिरोध का SI मात्रक क्या है?", "ओम", "वोल्ट", "एम्पियर", "कूलॉम"],
+  ["विभवांतर का SI मात्रक क्या है?", "वोल्ट", "ओम", "एम्पियर", "वाट"],
+  ["वाहनों में पीछे का दृश्य देखने के लिए कौन सा दर्पण प्रयोग होता है?", "उत्तल दर्पण", "अवतल दर्पण", "समतल दर्पण", "बेलनाकार दर्पण"],
+  ["दाढ़ी बनाने वाले शीशे में कौन सा दर्पण प्रयोग होता है?", "अवतल दर्पण", "उत्तल दर्पण", "समतल दर्पण", "प्रिज्म"],
+  ["इंद्रधनुष में कुल कितने रंग होते हैं?", "7", "5", "6", "8"],
+  ["प्रिज्म से श्वेत प्रकाश के सात रंगों में बँटने को क्या कहते हैं?", "वर्ण विक्षेपण", "अपवर्तन", "परावर्तन", "विवर्तन"],
+  ["आकाश का रंग नीला किस कारण दिखाई देता है?", "प्रकाश के प्रकीर्णन के कारण", "प्रकाश के अपवर्तन के कारण", "प्रकाश के परावर्तन के कारण", "प्रकाश के अवशोषण के कारण"],
+  ["ऊष्मा का सबसे अच्छा सुचालक कौन सा है?", "चाँदी", "लकड़ी", "काँच", "रबर"],
+  ["निम्न में से विद्युत का कुचालक कौन सा है?", "रबर", "ताँबा", "लोहा", "एल्युमिनियम"],
+  ["सबसे कठोर प्राकृतिक पदार्थ कौन सा है?", "हीरा", "ग्रेफाइट", "लोहा", "कोयला"],
+  ["सामान्य तापमान पर पारा (Mercury) किस अवस्था में होता है?", "द्रव", "ठोस", "गैस", "प्लाज्मा"],
+  ["पानी का हिमांक (जमने का तापमान) कितना होता है?", "0°C", "4°C", "100°C", "-10°C"],
+  ["बर्फ पानी पर क्यों तैरती है?", "बर्फ का घनत्व पानी से कम होता है", "बर्फ का घनत्व पानी से अधिक होता है", "बर्फ ठंडी होती है", "बर्फ सफेद होती है"],
+  ["प्रकाश संश्लेषण की क्रिया में कौन सी गैस बाहर निकलती है?", "ऑक्सीजन", "कार्बन डाइऑक्साइड", "नाइट्रोजन", "हाइड्रोजन"],
+  ["श्वसन क्रिया में शरीर से कौन सी गैस बाहर निकलती है?", "कार्बन डाइऑक्साइड", "ऑक्सीजन", "हाइड्रोजन", "हीलियम"],
+  ["मनुष्य में गुणसूत्रों (Chromosomes) के कितने जोड़े होते हैं?", "23", "22", "24", "46"],
+  ["DNA का पूर्ण रूप क्या है?", "डीऑक्सीराइबो न्यूक्लिक एसिड", "डाइऑक्सीराइबो नाइट्रिक एसिड", "डीऑक्सी रिबोज़ न्यूट्रल एसिड", "डायनेमिक न्यूक्लिक एसिड"],
+  ["कोशिका (Cell) की खोज किसने की थी?", "रॉबर्ट हुक", "न्यूटन", "डार्विन", "मेंडल"],
+  ["आनुवंशिकता का जनक किसे कहा जाता है?", "ग्रेगर जॉन मेंडल", "चार्ल्स डार्विन", "लैमार्क", "रॉबर्ट हुक"],
+  ["प्राकृतिक वरण (Natural Selection) का सिद्धांत किसने दिया?", "चार्ल्स डार्विन", "ग्रेगर मेंडल", "लैमार्क", "लुई पाश्चर"],
+  ["चेचक के टीके की खोज किसने की थी?", "एडवर्ड जेनर", "लुई पाश्चर", "अलेक्जेंडर फ्लेमिंग", "रॉबर्ट कोच"],
+  ["पेनिसिलिन की खोज किसने की थी?", "अलेक्जेंडर फ्लेमिंग", "एडवर्ड जेनर", "लुई पाश्चर", "रॉबर्ट कोच"],
+  ["कोशिका का \"शक्ति केंद्र\" (Power House) किसे कहा जाता है?", "माइटोकॉन्ड्रिया", "राइबोसोम", "केंद्रक", "गॉल्जीकाय"],
+  ["मानव शरीर की सबसे लंबी हड्डी कौन सी है?", "जाँघ की हड्डी (फीमर)", "रीढ़ की हड्डी", "बाँह की हड्डी (ह्यूमरस)", "पसली"],
+  ["मानव शरीर की सबसे छोटी हड्डी कौन सी है?", "स्टेपीज़ (कान की हड्डी)", "फीमर", "टिबिया", "रेडियस"],
+  ["भोजन का पाचन किस अंग से शुरू होता है?", "मुँह", "आमाशय", "छोटी आँत", "बड़ी आँत"],
+  ["पित्त रस का निर्माण कहाँ होता है?", "यकृत (लिवर)", "अग्न्याशय", "आमाशय", "गुर्दा"],
+  ["मानव शरीर की सबसे बड़ी ग्रंथि कौन सी है?", "यकृत (लिवर)", "अग्न्याशय", "थायरॉइड", "पीयूष ग्रंथि"],
+  ["आँख में प्रकाश के प्रति संवेदनशील परत कौन सी है?", "रेटिना", "कॉर्निया", "पुतली", "आइरिस"],
+  ["बच्चों के दूध के दाँतों की संख्या कितनी होती है?", "20", "28", "32", "24"],
+  ["वयस्क मनुष्य के कुल दाँतों की संख्या कितनी होती है?", "32", "28", "30", "36"],
+  ["सामान्य मानव शरीर का तापमान लगभग कितना होता है?", "37°C", "35°C", "40°C", "30°C"],
+  ["रक्तचाप मापने के यंत्र को क्या कहते हैं?", "स्फिग्मोमैनोमीटर", "थर्मामीटर", "बैरोमीटर", "हाइड्रोमीटर"],
+  ["वायुमंडलीय दाब मापने के यंत्र को क्या कहते हैं?", "बैरोमीटर", "थर्मामीटर", "एनीमोमीटर", "हाइग्रोमीटर"],
+  ["भूकंप की तीव्रता मापने के यंत्र को क्या कहते हैं?", "सीस्मोग्राफ", "बैरोमीटर", "ओडोमीटर", "लैक्टोमीटर"],
+  ["पृथ्वी के सबसे निकट का तारा कौन सा है?", "सूर्य", "ध्रुव तारा", "सिरियस", "बेटेलगेस"],
+  ["सूर्य के सबसे निकट का ग्रह कौन सा है?", "बुध", "शुक्र", "पृथ्वी", "मंगल"],
+  ["\"लाल ग्रह\" के नाम से कौन सा ग्रह जाना जाता है?", "मंगल", "शुक्र", "बृहस्पति", "बुध"],
+  ["सौरमंडल का सबसे गर्म ग्रह कौन सा है?", "शुक्र", "बुध", "मंगल", "बृहस्पति"],
+  ["अपने सुंदर छल्लों के लिए प्रसिद्ध ग्रह कौन सा है?", "शनि", "मंगल", "बुध", "शुक्र"],
+  ["सौरमंडल में कुल कितने ग्रह हैं?", "8", "9", "7", "10"],
+  ["पृथ्वी को सूर्य की एक परिक्रमा पूरी करने में लगभग कितना समय लगता है?", "लगभग 365 दिन", "लगभग 30 दिन", "लगभग 24 घंटे", "लगभग 7 दिन"],
+  ["चंद्रमा पर कदम रखने वाले पहले मानव कौन थे?", "नील आर्मस्ट्रांग", "बज़ एल्ड्रिन", "यूरी गागरिन", "राकेश शर्मा"],
+  ["अंतरिक्ष में जाने वाले पहले मानव कौन थे?", "यूरी गागरिन", "नील आर्मस्ट्रांग", "जॉन ग्लेन", "एलन शेपर्ड"],
+  ["LPG के मुख्य घटक कौन से हैं?", "ब्यूटेन और प्रोपेन", "केवल मीथेन", "केवल एथेन", "हाइड्रोजन और ऑक्सीजन"],
+  ["CNG का मुख्य घटक कौन सा है?", "मीथेन", "ब्यूटेन", "प्रोपेन", "एथिलीन"],
+  ["आग बुझाने में सामान्यतः कौन सी गैस काम आती है?", "कार्बन डाइऑक्साइड", "ऑक्सीजन", "हाइड्रोजन", "मीथेन"],
+  ["ओजोन परत हमें किससे बचाती है?", "पराबैंगनी किरणों से", "अवरक्त किरणों से", "ध्वनि तरंगों से", "रेडियो तरंगों से"],
+  ["ग्लोबल वार्मिंग के लिए मुख्य रूप से जिम्मेदार गैस कौन सी है?", "कार्बन डाइऑक्साइड", "ऑक्सीजन", "नाइट्रोजन", "हीलियम"],
+  ["अम्ल के संपर्क में आने पर नीला लिटमस पेपर किस रंग का हो जाता है?", "लाल", "नीला (वही रहता है)", "हरा", "पीला"],
+  ["नींबू में कौन सा अम्ल पाया जाता है?", "सिट्रिक अम्ल", "लैक्टिक अम्ल", "एसिटिक अम्ल", "टार्टरिक अम्ल"],
+  ["सिरके में कौन सा अम्ल पाया जाता है?", "एसिटिक अम्ल", "सिट्रिक अम्ल", "लैक्टिक अम्ल", "फॉर्मिक अम्ल"],
+  ["दही में कौन सा अम्ल पाया जाता है?", "लैक्टिक अम्ल", "सिट्रिक अम्ल", "एसिटिक अम्ल", "ऑक्सैलिक अम्ल"],
+  ["चींटी के डंक में कौन सा अम्ल होता है?", "फॉर्मिक अम्ल", "सिट्रिक अम्ल", "लैक्टिक अम्ल", "टार्टरिक अम्ल"],
+  ["मानव शरीर में रक्त का संचार करने वाला अंग कौन सा है?", "हृदय", "यकृत", "फेफड़े", "गुर्दे"],
+  ["पौधों में जल और खनिज लवणों का अवशोषण किसके द्वारा होता है?", "जड़ों द्वारा", "पत्तियों द्वारा", "तने द्वारा", "फूलों द्वारा"]
+]);
+
+addTuples("English Language", [
+  ["Choose the synonym of 'Begin':", "Start", "End", "Stop", "Finish"],
+  ["Choose the antonym of 'Increase':", "Decrease", "Grow", "Rise", "Expand"],
+  ["Choose the synonym of 'Angry':", "Furious", "Calm", "Glad", "Weak"],
+  ["Choose the antonym of 'Ancient':", "Modern", "Old", "Antique", "Historic"],
+  ["What is the plural of 'Mouse'?", "Mice", "Mouses", "Mices", "Mousee"],
+  ["What is the plural of 'Leaf'?", "Leaves", "Leafs", "Leafes", "Leavs"],
+  ["What is the past tense of 'Write'?", "Wrote", "Written", "Writed", "Writes"],
+  ["What is the past tense of 'Buy'?", "Bought", "Buyed", "Brought", "Buyt"],
+  ["What is the past participle of 'Give'?", "Given", "Gave", "Gived", "Giving"],
+  ["Fill in the blank: He has ___ his homework.", "finished", "finish", "finishing", "finishes"],
+  ["Fill in the blank: I have been waiting ___ two hours.", "for", "since", "from", "at"],
+  ["Fill in the blank: She has lived here ___ 2015.", "since", "for", "from", "in"],
+  ["Fill in the blank: Neither of the boys ___ present.", "was", "were", "are", "have"],
+  ["Fill in the blank: The sun ___ in the east.", "rises", "rise", "rising", "rose"],
+  ["Fill in the blank: He is good ___ mathematics.", "at", "in", "on", "with"],
+  ["Fill in the blank: She is afraid ___ dogs.", "of", "from", "with", "to"],
+  ["Fill in the blank: Honesty is the best ___.", "policy", "idea", "way", "quality"],
+  ["Fill in the blank: There are ___ students in the class.", "many", "much", "little", "a bit"],
+  ["Fill in the blank: I don't have ___ money.", "any", "some", "many", "few"],
+  ["Fill in the blank: She sings ___.", "well", "good", "goodly", "best"],
+  ["Choose the correct spelling (separate):", "Separate", "Seperate", "Separete", "Saperate"],
+  ["Choose the correct spelling (necessary):", "Necessary", "Neccessary", "Necesary", "Neccesary"],
+  ["Choose the correct spelling (beautiful):", "Beautiful", "Beautifull", "Beutiful", "Baeutiful"],
+  ["Choose the correct spelling (government):", "Government", "Goverment", "Govermment", "Governmant"],
+  ["Choose the correct spelling (environment):", "Environment", "Enviroment", "Environmant", "Enviornment"],
+  ["One word for 'a place where books are kept':", "Library", "Museum", "Bakery", "Garage"],
+  ["One word for 'a man who is not married':", "Bachelor", "Widow", "Orphan", "Veteran"],
+  ["One word for 'fear of heights':", "Acrophobia", "Claustrophobia", "Hydrophobia", "Xenophobia"],
+  ["One word for 'a person who flies an aeroplane':", "Pilot", "Sailor", "Driver", "Gardener"],
+  ["What does the idiom 'Once in a blue moon' mean?", "Very rarely", "Very often", "Every night", "At midnight"],
+  ["What does the idiom 'To break the ice' mean?", "To start a conversation", "To break glass", "To feel cold", "To end a talk"],
+  ["What does the idiom 'Under the weather' mean?", "Feeling sick", "In the rain", "Very happy", "Outside the house"],
+  ["What does the idiom 'A blessing in disguise' mean?", "A hidden good thing", "A curse", "A costume", "A bad omen"],
+  ["What does the idiom 'Cry over spilt milk' mean?", "Regret what cannot be changed", "Cry loudly", "Drink milk", "Waste food"],
+  ["Change into passive voice: 'The cat drank the milk.'", "The milk was drunk by the cat.", "The milk is drunk by the cat.", "The milk drank the cat.", "The milk has been drunk by cat."],
+  ["Change into active voice: 'The letter was written by Ram.'", "Ram wrote the letter.", "Ram writes the letter.", "Ram has written the letter.", "Ram was writing the letter."],
+  ["Change into indirect speech: He said, \"I am happy.\"", "He said that he was happy.", "He said that he is happy.", "He said that I was happy.", "He said that he has been happy."],
+  ["Identify the part of speech of the word 'quickly':", "Adverb", "Adjective", "Noun", "Verb"],
+  ["Identify the part of speech of the word 'beautiful':", "Adjective", "Adverb", "Noun", "Verb"],
+  ["Identify the pronoun: 'They are playing in the park.'", "They", "are", "playing", "park"],
+  ["Identify the conjunction: 'I was tired but I kept working.'", "but", "tired", "kept", "working"],
+  ["Identify the preposition: 'The book is on the table.'", "on", "book", "is", "table"],
+  ["Choose the correct article: ___ university is nearby.", "A", "An", "The", "No article"],
+  ["Choose the correct article: ___ sun rises in the east.", "The", "A", "An", "No article"],
+  ["What is the comparative degree of 'Good'?", "Better", "Gooder", "Best", "More good"],
+  ["What is the superlative degree of 'Bad'?", "Worst", "Baddest", "Worse", "Most bad"],
+  ["What is the comparative degree of 'Tall'?", "Taller", "More tall", "Tallest", "Tallier"],
+  ["Identify the tense: 'She writes a letter.'", "Simple present", "Simple past", "Simple future", "Present continuous"],
+  ["Complete the question tag: You are a student, ___?", "aren't you", "isn't you", "are you", "don't you"],
+  ["Fill in the blank: Each of the students ___ present.", "is", "are", "were", "have"]
+]);
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let timerInterval;
+let timeLeft = 3600;
+let marked = {};
+let currentExam = "";
+const NEG = 0.25;
+const examTime = {"SSC CGL": 60, "SSC CHSL": 60, "SSC GD": 60, "Bank": 60, "Agniveer": 60, "Railway": 90, "Delhi Police": 90, "Daroga": 120, "Police": 120};
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// ====== गणित और रीज़निंग: हर टेस्ट में नए-नए प्रश्न अपने-आप बनते हैं ======
+function rnd(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
+function pick(arr) { return arr[rnd(0, arr.length - 1)]; }
+function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+
+function numOptions(ans, fmt) {
+  fmt = fmt || String;
+  const deltas = shuffleArray([1, 2, 3, 4, 5, 6, 8, 10, 12, 15, -1, -2, -3, -4, -5, -6, -8, -10]);
+  const set = new Set([ans]);
+  for (const d of deltas) {
+    const v = ans + d;
+    if (v > 0 && !set.has(v)) set.add(v);
+    if (set.size === 4) break;
+  }
+  return { options: shuffleArray([...set].map(fmt)), answer: fmt(ans) };
+}
+
+function poolOptions(correct, pool) {
+  const others = shuffleArray(pool.filter(x => x !== correct)).slice(0, 3);
+  return { options: shuffleArray([correct, ...others]), answer: correct };
+}
+
+const mathTypes = [
+  () => { const a = rnd(120, 899), b = rnd(120, 899); return { q: `${a} + ${b} कितना होगा?`, ans: a + b }; },
+  () => { const a = rnd(500, 999), b = rnd(100, 499); return { q: `${a} − ${b} कितना होगा?`, ans: a - b }; },
+  () => { const a = rnd(11, 30), b = rnd(3, 15); return { q: `${a} × ${b} कितना होगा?`, ans: a * b }; },
+  () => { const p = pick([5, 10, 15, 20, 25, 40, 50]), n = rnd(2, 20) * 20; return { q: `${n} का ${p}% कितना होगा?`, ans: n * p / 100 }; },
+  () => { const l = rnd(6, 25), w = rnd(3, l - 1); return { q: `${l} सेमी लंबाई और ${w} सेमी चौड़ाई वाले आयत का क्षेत्रफल क्या होगा?`, ans: l * w, fmt: n => `${n} वर्ग सेमी` }; },
+  () => { const l = rnd(6, 25), w = rnd(3, l - 1); return { q: `${l} सेमी लंबाई और ${w} सेमी चौड़ाई वाले आयत का परिमाप क्या होगा?`, ans: 2 * (l + w), fmt: n => `${n} सेमी` }; },
+  () => { const P = rnd(2, 20) * 100, R = rnd(5, 12), T = rnd(2, 5); return { q: `₹${P} पर ${R}% वार्षिक दर से ${T} वर्ष का साधारण ब्याज कितना होगा?`, ans: P * R * T / 100, fmt: n => `₹${n}` }; },
+  () => { const avg = rnd(15, 60), x = rnd(1, 8), y = rnd(1, 8); return { q: `${avg - x}, ${avg + y} और ${avg + x - y} का औसत क्या होगा?`, ans: avg }; },
+  () => { const s = pick([40, 45, 50, 60, 70, 80]), t = rnd(2, 7); return { q: `एक गाड़ी ${s} किमी/घंटा की चाल से ${t} घंटे चलती है। वह कितनी दूरी तय करेगी?`, ans: s * t, fmt: n => `${n} किमी` }; },
+  () => { const s = pick([30, 40, 50, 60, 80]), t = rnd(2, 8); return { q: `${s * t} किमी की दूरी ${s} किमी/घंटा की चाल से तय करने में कितना समय लगेगा?`, ans: t, fmt: n => `${n} घंटे` }; },
+  () => { let a, b; do { a = rnd(2, 9); b = rnd(2, 9); } while (a === b || gcd(a, b) !== 1); const g = rnd(2, 9); return { q: `${g * a} और ${g * b} का महत्तम समापवर्तक (HCF) क्या है?`, ans: g }; },
+  () => { let x, y; do { x = pick([4, 6, 8, 9, 10, 12, 15]); y = pick([3, 5, 6, 7, 8, 9, 10]); } while (x === y); return { q: `${x} और ${y} का लघुत्तम समापवर्त्य (LCM) क्या है?`, ans: x * y / gcd(x, y) }; },
+  () => { const a = rnd(5, 40), x = rnd(5, 60); return { q: `यदि x + ${a} = ${x + a} है, तो x का मान क्या होगा?`, ans: x }; },
+  () => { const a = rnd(2, 12), x = rnd(2, 15); return { q: `यदि ${a}x = ${a * x} है, तो x का मान क्या होगा?`, ans: x }; },
+  () => { const n = rnd(11, 30); return { q: `${n}² का मान क्या होगा?`, ans: n * n }; },
+  () => { const n = rnd(11, 30); return { q: `${n * n} का वर्गमूल क्या है?`, ans: n }; },
+  () => { const n = rnd(3, 12); return { q: `${n} का घन (Cube) क्या होगा?`, ans: n * n * n }; },
+  () => { const P = rnd(2, 20) * 100, d = pick([10, 20, 25, 50]); return { q: `₹${P} की वस्तु पर ${d}% की छूट मिलने पर उसकी कीमत कितनी होगी?`, ans: P * (100 - d) / 100, fmt: n => `₹${n}` }; },
+  () => { const cp = rnd(2, 20) * 100, p = pick([10, 20, 25, 30, 40, 50]); return { q: `₹${cp} में खरीदी वस्तु को ${p}% लाभ पर बेचने पर विक्रय मूल्य कितना होगा?`, ans: cp * (100 + p) / 100, fmt: n => `₹${n}` }; },
+  () => { let a, b; do { a = rnd(1, 5); b = rnd(1, 5); } while (a === b); const k = rnd(5, 20); return { q: `₹${(a + b) * k} को ${a}:${b} के अनुपात में बाँटने पर पहले भाग का मान क्या होगा?`, ans: a * k, fmt: n => `₹${n}` }; },
+  () => { const x = rnd(10, 40), y = rnd(3, 15); return { q: `राम की वर्तमान आयु ${x} वर्ष है। ${y} वर्ष बाद उसकी आयु कितनी होगी?`, ans: x + y, fmt: n => `${n} वर्ष` }; },
+  () => { const m = pick([4, 5, 6, 8, 10]), k = pick([2, 3, 4]), d = k * rnd(2, 6); return { q: `${m} मजदूर किसी काम को ${d} दिन में पूरा करते हैं, तो ${m * k} मजदूर उसे कितने दिन में पूरा करेंगे?`, ans: d / k, fmt: n => `${n} दिन` }; },
+  () => { const x = rnd(10, 80); return { q: `${x}° के कोण का पूरक कोण (Complementary angle) क्या होगा?`, ans: 90 - x, fmt: n => `${n}°` }; },
+  () => { const x = rnd(20, 160); return { q: `${x}° के कोण का संपूरक कोण (Supplementary angle) क्या होगा?`, ans: 180 - x, fmt: n => `${n}°` }; },
+  () => { const n = rnd(5, 60); return { q: `तीन क्रमागत संख्याओं का योग ${3 * n} है, तो उनमें मध्य संख्या कौन सी है?`, ans: n }; },
+  () => { const d = pick([2, 3, 4, 5, 10]), n = d * rnd(3, 30), num = rnd(1, d - 1); return { q: `${n} का ${num}/${d} कितना होगा?`, ans: n / d * num }; },
+  () => { const x = rnd(2, 9); return { q: `${x} दर्जन में कुल कितनी वस्तुएँ होती हैं?`, ans: 12 * x }; },
+  () => { const d = rnd(3, 12), q = rnd(10, 50); return { q: `${d * q} ÷ ${d} कितना होगा?`, ans: q }; }
+];
+
+function generateMathQuestions(count) {
+  const out = [], seen = new Set();
+  const types = shuffleArray([...mathTypes]);
+  let i = 0, guard = 0;
+  while (out.length < count && guard++ < 500) {
+    const item = types[i % types.length](); i++;
+    if (seen.has(item.q)) continue;
+    seen.add(item.q);
+    const o = numOptions(item.ans, item.fmt);
+    out.push({ q: item.q, options: o.options, answer: o.answer });
+  }
+  return out;
+}
+
+const DAYS = ["सोमवार / Monday", "मंगलवार / Tuesday", "बुधवार / Wednesday", "गुरुवार / Thursday", "शुक्रवार / Friday", "शनिवार / Saturday", "रविवार / Sunday"];
+const DIRS = ["उत्तर / North", "पूर्व / East", "दक्षिण / South", "पश्चिम / West"];
+const NAMES = ["राम / Ram", "श्याम / Shyam", "मोहन / Mohan", "सोहन / Sohan", "गीता / Geeta", "सीता / Seeta", "रवि / Ravi", "अजय / Ajay"];
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const CODE_WORDS = ["CAT", "DOG", "SUN", "PEN", "BAT", "MAP", "CUP", "HEN", "FAN", "JAR"];
+const SUM_WORDS = ["BAD", "CAB", "FAD", "BED", "ACE", "BAG", "DAB", "FEE", "HEN", "JAM"];
+const shiftWord = (w, s) => w.split("").map(c => LETTERS[LETTERS.indexOf(c) + s]).join("");
+
+const reasoningTypes = [
+  () => { const a = rnd(2, 30), d = rnd(2, 9); const s = [0, 1, 2, 3, 4].map(i => a + i * d); const o = numOptions(a + 5 * d); return { q: `श्रृंखला को पूरा करें / Complete the series:\n${s.join(", ")}, ?`, ...o }; },
+  () => { const a = rnd(2, 5), r = pick([2, 3]); const s = [0, 1, 2, 3].map(i => a * Math.pow(r, i)); const o = numOptions(a * Math.pow(r, 4)); return { q: `श्रृंखला को पूरा करें / Complete the series:\n${s.join(", ")}, ?`, ...o }; },
+  () => { const n = rnd(2, 9); const s = [0, 1, 2, 3].map(i => (n + i) * (n + i)); const o = numOptions((n + 4) * (n + 4)); return { q: `श्रृंखला को पूरा करें / Complete the series:\n${s.join(", ")}, ?`, ...o }; },
+  () => { const st = pick([1, 2, 3]), start = rnd(0, 25 - 5 * st); const s = [0, 1, 2, 3].map(i => LETTERS[start + i * st]); const ans = LETTERS[start + 4 * st]; const pool = [ans]; [-2, -1, 1, 2, 3].forEach(d => { const k = start + 4 * st + d; if (k >= 0 && k < 26 && !pool.includes(LETTERS[k])) pool.push(LETTERS[k]); }); const o = poolOptions(ans, pool.concat(["Q", "R", "S"]).filter((v, i, a) => a.indexOf(v) === i)); return { q: `अक्षर श्रृंखला पूरी करें / Complete the letter series:\n${s.join(", ")}, ?`, ...o }; },
+  () => { let w1, w2; do { w1 = pick(CODE_WORDS); w2 = pick(CODE_WORDS); } while (w1 === w2); const s = rnd(1, 3); const o = poolOptions(shiftWord(w2, s), [1, 2, 3, 4, 5].map(k => shiftWord(w2, k))); return { q: `यदि ${w1} को ${shiftWord(w1, s)} लिखा जाता है, तो ${w2} को कैसे लिखा जाएगा?\nIf ${w1} is coded as ${shiftWord(w1, s)}, how is ${w2} coded?`, ...o }; },
+  () => { const i = rnd(0, 6); let n; do { n = rnd(2, 13); } while (n % 7 === 0); const o = poolOptions(DAYS[(i + n) % 7], DAYS); return { q: `यदि आज ${DAYS[i]} है, तो ${n} दिन बाद कौन सा दिन होगा?\nIf today is ${DAYS[i]}, what day will it be after ${n} days?`, ...o }; },
+  () => { const t = shuffleArray([...NAMES]).slice(0, 3); const o = { options: shuffleArray([t[0], t[1], t[2], "कहा नहीं जा सकता / Cannot say"]), answer: t[0] }; return { q: `${t[0]}, ${t[1]} से लंबा है और ${t[1]}, ${t[2]} से लंबा है। तीनों में सबसे लंबा कौन है?\n${t[0]} is taller than ${t[1]} and ${t[1]} is taller than ${t[2]}. Who is the tallest?`, ...o }; },
+  () => { const t = shuffleArray([...NAMES]).slice(0, 3); const o = { options: shuffleArray([t[0], t[1], t[2], "कहा नहीं जा सकता / Cannot say"]), answer: t[2] }; return { q: `${t[0]}, ${t[1]} से बड़ा है और ${t[1]}, ${t[2]} से बड़ा है। तीनों में सबसे छोटा कौन है?\n${t[0]} is older than ${t[1]} and ${t[1]} is older than ${t[2]}. Who is the youngest?`, ...o }; },
+  () => { const k = pick([3, 4, 5, 6, 7, 9]); const mult = new Set(); while (mult.size < 3) mult.add(k * rnd(2, 15)); const odd = k * rnd(2, 15) + rnd(1, k - 1); const all = [...mult, odd].map(String); return { q: `${k} से विभाज्य न होने वाली संख्या चुनिए / Choose the number NOT divisible by ${k}:\n${all.join(", ")}`, options: shuffleArray([...all]), answer: String(odd) }; },
+  () => { let n, m; do { n = rnd(2, 12); m = rnd(2, 12); } while (n === m); const o = numOptions(m * m); return { q: `समानता / Analogy:\n${n} : ${n * n} :: ${m} : ?`, ...o }; },
+  () => { let n, m; do { n = rnd(2, 6); m = rnd(2, 6); } while (n === m); const o = numOptions(m * m * m); return { q: `समानता / Analogy:\n${n} : ${n * n * n} :: ${m} : ?`, ...o }; },
+  () => { const h = pick([3, 6, 9]); const ans = h === 6 ? "180°" : "90°"; const o = poolOptions(ans, ["30°", "60°", "90°", "120°", "150°", "180°"]); return { q: `${h}:00 बजे घड़ी की घंटे और मिनट की सुइयों के बीच कितने डिग्री का कोण बनता है?\nWhat is the angle between the hour and minute hands at ${h}:00?`, ...o }; },
+  () => { const i = rnd(0, 3); const side = pick([["दाएँ", 1, "right"], ["बाएँ", 3, "left"], ["पीछे की ओर", 2, "about-turn (back)"]]); const o = poolOptions(DIRS[(i + side[1]) % 4], DIRS); return { q: `एक व्यक्ति ${DIRS[i]} दिशा की ओर मुँह करके खड़ा है। वह ${side[0]} मुड़ता है, तो अब उसका मुँह किस दिशा में होगा?\nA person faces ${DIRS[i].split(" / ")[1]}. He turns ${side[2]}. Which direction does he face now?`, ...o }; },
+  () => { const i = rnd(0, 15), k = rnd(2, 8); const ans = LETTERS[i + k]; const o = poolOptions(ans, shuffleArray(LETTERS.split("")).slice(0, 8).concat([ans])); return { q: `अंग्रेजी वर्णमाला में ${LETTERS[i]} से ${k} स्थान आगे कौन सा अक्षर है?\nWhich letter is ${k} places ahead of ${LETTERS[i]}?`, ...o }; },
+  () => { const a = rnd(1, 10); const s = [a, a + 1, a + 3, a + 6, a + 10]; const o = numOptions(a + 15); return { q: `श्रृंखला को पूरा करें / Complete the series:\n${s.join(", ")}, ?`, ...o }; },
+  () => { const a = rnd(1, 4); const s = [a]; for (let i = 0; i < 3; i++) s.push(s[i] * 2 + 1); const o = numOptions(s[3] * 2 + 1); return { q: `श्रृंखला को पूरा करें / Complete the series:\n${s.join(", ")}, ?`, ...o }; },
+  () => { const w = pick(SUM_WORDS); const v = w.split("").reduce((t, c) => t + LETTERS.indexOf(c) + 1, 0); const o = numOptions(v); return { q: `यदि A=1, B=2, C=3 ... Z=26 है, तो ${w} के अक्षरों का मान (योग) क्या होगा?\nIf A=1, B=2 ... Z=26, find the sum of letter values of ${w}.`, ...o }; }
+];
+
+reasoningTypes.push(
+  () => { const t = rnd(5, 20), n = rnd(30, 45); const o = numOptions(n - t + 1); return { q: `एक कक्षा में ${n} विद्यार्थी हैं। रोहित ऊपर से ${t}वें स्थान पर है, तो नीचे से उसका स्थान क्या है?\nThere are ${n} students. Rohit ranks ${t}th from the top. What is his rank from the bottom?`, ...o }; },
+  () => { const l = rnd(5, 15), r = rnd(5, 15); const o = numOptions(l + r - 1); return { q: `एक पंक्ति में अमन बाएँ से ${l}वें और दाएँ से ${r}वें स्थान पर है। पंक्ति में कुल कितने लोग हैं?\nAman is ${l}th from the left and ${r}th from the right in a row. How many people are in the row?`, ...o }; },
+  () => ({ q: "A का पुत्र B है, B की बहन C है। C का A से क्या संबंध है?\nB is the son of A, and C is B's sister. How is C related to A?", options: shuffleArray(["पुत्री / Daughter", "पत्नी / Wife", "बहन / Sister", "माता / Mother"]), answer: "पुत्री / Daughter" }),
+  () => { const a = rnd(2, 9), b = rnd(2, 9); const v = (a * 3 + b) * 2; const o = numOptions(v); return { q: `यदि 3 @ 2 = 12 जैसे नियम में a @ b = (3a + b) × 2 है, तो ${a} @ ${b} का मान क्या होगा?\nIf a @ b = (3a + b) × 2, find ${a} @ ${b}.`, ...o }; }
+);
+function generateReasoningQuestions(count, avoid) {
+  const out = [], seen = new Set(avoid || []);
+  // कुछ हाथ से बनाए प्रश्न + बाकी अपने-आप बने प्रश्न
+  const handmade = shuffleArray([...realQuestionsData["Reasoning"]]).slice(0, 0);
+  handmade.forEach(h => { if (!seen.has(h.q)) { seen.add(h.q); out.push({ q: h.q, options: shuffleArray([...h.options]), answer: h.answer }); } });
+  let guard = 0;
+  while (out.length < count && guard++ < 1000) {
+    const item = pick(reasoningTypes)();
+    if (seen.has(item.q) || new Set(item.options).size !== 4) continue;
+    seen.add(item.q);
+    out.push({ q: item.q, options: item.options, answer: item.answer });
+  }
+  return shuffleArray(out);
+}
+
+// हर एग्जाम के लिए विषय और प्रश्न-सेट (हर सेट में 25 प्रश्न)
+const examConfig = {
+  "SSC CGL":      { subjects: ["Mathematics", "Reasoning", "General Knowledge", "English Language"], sets: { "General Knowledge": 2, "English Language": 0 } },
+  "SSC CHSL":     { subjects: ["Mathematics", "Reasoning", "General Knowledge", "English Language"], sets: { "General Knowledge": 3, "English Language": 1 } },
+  "SSC GD":       { subjects: ["Mathematics", "Reasoning", "General Knowledge", "Hindi/English"],    sets: { "General Knowledge": 0, "Hindi/English": 0 } },
+  "Daroga":       { subjects: ["General Knowledge", "General Science", "Mathematics", "Reasoning"],  sets: { "General Knowledge": 0, "General Science": 0 } },
+  "Police":       { subjects: ["General Knowledge", "General Science", "Mathematics", "Reasoning"],  sets: { "General Knowledge": 1, "General Science": 1 } },
+  "Railway":      { subjects: ["General Knowledge", "General Science", "Mathematics", "Reasoning"],  sets: { "General Knowledge": 2, "General Science": 2 } },
+  "Agniveer":     { subjects: ["General Knowledge", "General Science", "Mathematics", "Reasoning"],  sets: { "General Knowledge": 3, "General Science": 3 } },
+  "Bank":         { subjects: ["Mathematics", "Reasoning", "English Language", "General Knowledge"], sets: { "General Knowledge": 1, "English Language": 2 } },
+  "Delhi Police": { subjects: ["General Knowledge", "Reasoning", "Mathematics", "Computer Awareness"], sets: { "General Knowledge": 3, "Computer Awareness": 0 } }
+};
+
+
+const hardBank = {
+"General Knowledge": [
+["संविधान का अनुच्छेद 21 किससे संबंधित है?","Article 21 of the Constitution deals with:","जीवन व व्यक्तिगत स्वतंत्रता / Life & Personal Liberty","समानता का अधिकार / Equality","धर्म की स्वतंत्रता / Religion","संपत्ति का अधिकार / Property"],
+["73वां संविधान संशोधन किससे संबंधित है?","The 73rd Amendment relates to:","पंचायती राज / Panchayati Raj","नगरपालिका / Municipalities","GST","शिक्षा का अधिकार / RTE"],
+["स्थायी बंदोबस्त किसने लागू किया?","Who introduced the Permanent Settlement?","लॉर्ड कॉर्नवालिस / Lord Cornwallis","वारेन हेस्टिंग्स / Warren Hastings","लॉर्ड डलहौजी / Lord Dalhousie","लॉर्ड वेलेजली / Lord Wellesley"],
+["मूल कर्तव्य किस संशोधन द्वारा जोड़े गए?","Fundamental Duties were added by the:","42वां / 42nd","44वां / 44th","24वां / 24th","52वां / 52nd"],
+["'दक्कन की गंगा' किस नदी को कहते हैं?","Which river is called 'Ganga of the South'?","गोदावरी / Godavari","कृष्णा / Krishna","कावेरी / Kaveri","महानदी / Mahanadi"],
+["RBI की स्थापना किस वर्ष हुई?","In which year was the RBI established?","1935","1947","1949","1950"],
+["ऑपरेशन 'स्माइलिंग बुद्धा' (पहला परमाणु परीक्षण) किस वर्ष हुआ?","In which year was 'Smiling Buddha' (first nuclear test) conducted?","1974","1998","1964","1983"],
+["सिंधु घाटी सभ्यता का प्रमुख बंदरगाह नगर कौन सा था?","Which was the major port city of the Indus Valley Civilisation?","लोथल / Lothal","कालीबंगा / Kalibangan","हड़प्पा / Harappa","रोपड़ / Ropar"],
+["पानीपत का प्रथम युद्ध (1526) किनके बीच हुआ?","The First Battle of Panipat (1526) was fought between:","बाबर व इब्राहिम लोदी / Babur & Ibrahim Lodi","अकबर व हेमू / Akbar & Hemu","हुमायूँ व शेरशाह / Humayun & Sher Shah","अब्दाली व मराठा / Abdali & Marathas"],
+["वित्त आयोग का गठन किस अनुच्छेद के तहत होता है?","The Finance Commission is constituted under Article:","280","324","148","356"],
+["भारत के नियंत्रक एवं महालेखा परीक्षक (CAG) का प्रावधान किस अनुच्छेद में है?","CAG of India is provided under Article:","148","280","124","76"],
+["गोवा भारत में कब मिला (ऑपरेशन विजय)?","Goa was liberated from Portuguese rule in:","1961","1947","1954","1971"],
+["भारत का सर्वोच्च युद्धकालीन वीरता पुरस्कार कौन सा है?","India's highest wartime gallantry award is:","परमवीर चक्र / Param Vir Chakra","महावीर चक्र / Maha Vir Chakra","अशोक चक्र / Ashoka Chakra","वीर चक्र / Vir Chakra"],
+["नीति आयोग का अध्यक्ष कौन होता है?","Who is the Chairperson of NITI Aayog?","प्रधानमंत्री / Prime Minister","वित्त मंत्री / Finance Minister","राष्ट्रपति / President","उपराष्ट्रपति / Vice President"],
+["भारत में राज्यसभा के सदस्यों का कार्यकाल कितना होता है?","What is the term of a Rajya Sabha member?","6 वर्ष / 6 years","5 वर्ष / 5 years","4 वर्ष / 4 years","अनिश्चित / Not fixed"],
+["राष्ट्रपति शासन किस अनुच्छेद के तहत लगाया जाता है?","President's Rule is imposed under Article:","356","352","360","370"]
+],
+"General Science": [
+["मानव रक्त का सामान्य pH लगभग कितना होता है?","The normal pH of human blood is about:","7.4","6.4","8.4","7.0"],
+["रतौंधी (Night blindness) किस विटामिन की कमी से होती है?","Night blindness is caused by deficiency of vitamin:","विटामिन A / Vitamin A","विटामिन B1 / Vitamin B1","विटामिन C / Vitamin C","विटामिन D / Vitamin D"],
+["ध्वनि की चाल किस माध्यम में सबसे अधिक होती है?","Sound travels fastest in:","ठोस / Solid","द्रव / Liquid","गैस / Gas","निर्वात / Vacuum"],
+["फलों को कृत्रिम रूप से पकाने में कौन सी गैस प्रयुक्त होती है?","Which gas is used for artificial ripening of fruits?","एथिलीन / Ethylene","मीथेन / Methane","नाइट्रोजन / Nitrogen","कार्बन डाइऑक्साइड / CO2"],
+["बीजों की सुषुप्तावस्था (dormancy) लाने वाला हॉर्मोन कौन सा है?","Which hormone induces seed dormancy?","एब्सिसिक अम्ल / Abscisic acid","ऑक्सिन / Auxin","जिबरेलिन / Gibberellin","साइटोकाइनिन / Cytokinin"],
+["सार्वभौमिक दाता (Universal donor) रक्त समूह कौन सा है?","Which blood group is the universal donor?","O−","AB+","A+","B−"],
+["निकट दृष्टि दोष (Myopia) में किस लेंस का प्रयोग होता है?","Which lens corrects myopia?","अवतल / Concave","उत्तल / Convex","बेलनाकार / Cylindrical","द्विफोकसी / Bifocal"],
+["बेकिंग सोडा का रासायनिक सूत्र क्या है?","The chemical formula of baking soda is:","NaHCO3","Na2CO3","NaOH","CaCO3"],
+["रॉकेट का प्रक्षेपण किस नियम पर आधारित है?","Rocket propulsion is based on:","न्यूटन का तृतीय नियम / Newton's 3rd law","न्यूटन का प्रथम नियम / Newton's 1st law","न्यूटन का द्वितीय नियम / Newton's 2nd law","बर्नौली सिद्धांत / Bernoulli's principle"],
+["प्रकाश संश्लेषण में मुक्त होने वाली O2 किससे आती है?","In photosynthesis, the released O2 comes from:","जल / Water","CO2","ग्लूकोज़ / Glucose","क्लोरोफिल / Chlorophyll"],
+["मानव शरीर की सबसे लंबी हड्डी कौन सी है?","The longest bone in the human body is:","फीमर / Femur","टिबिया / Tibia","ह्यूमरस / Humerus","रेडियस / Radius"],
+["लोहे में जंग लगना किस प्रकार की अभिक्रिया है?","Rusting of iron is an example of:","ऑक्सीकरण / Oxidation","अपचयन / Reduction","उर्ध्वपातन / Sublimation","उदासीनीकरण / Neutralisation"]
+],
+"Computer Awareness": [
+["1 TB बराबर होता है:","1 TB is equal to:","1024 GB","1000 MB","512 GB","2048 GB"],
+["दशमलव संख्या 10 का बाइनरी रूप क्या है?","Binary of decimal 10 is:","1010","1100","1001","1110"],
+["IPv4 एड्रेस कितने बिट का होता है?","An IPv4 address is how many bits?","32","64","128","16"],
+["इनमें से कौन सा ऑपरेटिंग सिस्टम नहीं है?","Which of these is NOT an operating system?","MS Excel","Linux","Android","Windows"],
+["इनमें से कौन सी मेमोरी वोलेटाइल है?","Which of the following is volatile memory?","RAM","ROM","हार्ड डिस्क / Hard Disk","पेन ड्राइव / Pen Drive"],
+["HTTP का पूर्ण रूप क्या है?","What is the full form of HTTP?","HyperText Transfer Protocol","HyperText Transmission Program","High Transfer Text Protocol","HyperTool Transfer Protocol"],
+["'Undo' का शॉर्टकट कौन सा है?","The shortcut key for 'Undo' is:","Ctrl + Z","Ctrl + Y","Ctrl + X","Ctrl + U"],
+["कंप्यूटर के जनक किसे कहा जाता है?","Who is known as the Father of Computer?","चार्ल्स बैबेज / Charles Babbage","एलन ट्यूरिंग / Alan Turing","बिल गेट्स / Bill Gates","जॉन नेपियर / John Napier"]
+],
+"English Language": [
+["'Ephemeral' का समानार्थी चुनें।","Choose the synonym of 'Ephemeral'.","Short-lived","Eternal","Heavy","Brave"],
+["'Benevolent' का विलोम चुनें।","Choose the antonym of 'Benevolent'.","Malevolent","Kind","Generous","Gentle"],
+["मुहावरे 'Burn the midnight oil' का अर्थ चुनें।","Meaning of the idiom 'Burn the midnight oil':","Work late into the night","Waste money","Start a fire","Sleep early"],
+["एक शब्द: 'सब कुछ जानने वाला'","One word: 'One who knows everything'","Omniscient","Omnipotent","Omnipresent","Optimist"],
+["रिक्त स्थान भरें: Neither of the boys ___ present.","Fill in the blank: Neither of the boys ___ present.","was","were","are","have been"],
+["Passive voice: 'She is writing a letter.'","Passive voice of: 'She is writing a letter.'","A letter is being written by her.","A letter was written by her.","A letter has been written by her.","A letter is written by her."],
+["सही वर्तनी चुनें।","Choose the correctly spelt word.","Accommodation","Acommodation","Accomodation","Acomodation"],
+["रिक्त स्थान भरें: He has been working here ___ 2015.","Fill in the blank: He has been working here ___ 2015.","since","for","from","by"],
+["'Candid' का समानार्थी चुनें।","Choose the synonym of 'Candid'.","Frank","Secretive","Rude","Shy"],
+["मुहावरा 'Once in a blue moon' का अर्थ?","Meaning of 'Once in a blue moon':","Very rarely","Every month","At night","Very often"],
+["रिक्त स्थान भरें: If I ___ you, I would apologise.","Fill in the blank: If I ___ you, I would apologise.","were","was","am","be"],
+["'Abundant' का विलोम चुनें।","Choose the antonym of 'Abundant'.","Scarce","Plentiful","Ample","Copious"]
+]
+};
+hardBank["Hindi/English"] = hardBank["English Language"].concat([
+["'आकाश' का पर्यायवाची शब्द चुनें।","Choose the Hindi synonym of 'आकाश' (sky).","गगन / Gagan","धरा / Dhara","अनल / Anal","सरिता / Sarita"],
+["'अंधकार' का विलोम शब्द चुनें।","Choose the antonym of 'अंधकार' (darkness).","प्रकाश / Prakash","तम / Tam","रात्रि / Ratri","तिमिर / Timir"],
+["'दिनकर' का अर्थ क्या है?","What does 'दिनकर' mean?","सूर्य / Sun","चंद्रमा / Moon","तारा / Star","बादल / Cloud"],
+["'नीरज' का अर्थ क्या है?","What does 'नीरज' mean?","कमल / Lotus","जल / Water","मछली / Fish","बादल / Cloud"]
+]);
+
+hardBank["General Knowledge"].push(
+["सर्वोच्च न्यायालय के न्यायाधीश की सेवानिवृत्ति आयु क्या है?","Retirement age of a Supreme Court judge is:","65","62","60","70"],
+["भारत का पहला उपग्रह कौन सा था?","India's first satellite was:","आर्यभट्ट / Aryabhata","भास्कर / Bhaskara","रोहिणी / Rohini","INSAT-1A"],
+["राजराज चोल की राजधानी कौन सी थी?","Capital of Rajaraja Chola was:","तंजावुर / Thanjavur","मदुरै / Madurai","कांचीपुरम / Kanchipuram","हम्पी / Hampi"],
+["सविनय अवज्ञा आंदोलन किस वर्ष शुरू हुआ?","The Civil Disobedience Movement began in:","1930","1920","1942","1919"],
+["भारत का सबसे अधिक साक्षर राज्य कौन सा है?","Which is the most literate state of India?","केरल / Kerala","गोवा / Goa","मिज़ोरम / Mizoram","त्रिपुरा / Tripura"],
+["भारत की सबसे बड़ी मीठे पानी की झील कौन सी है?","India's largest freshwater lake is:","वुलर / Wular","डल / Dal","चिल्का / Chilika","सांभर / Sambhar"],
+["'गेटवे ऑफ इंडिया' किसके स्वागत में बना?","The Gateway of India was built to welcome:","जॉर्ज पंचम / King George V","एडवर्ड सप्तम / Edward VII","रानी विक्टोरिया / Queen Victoria","लॉर्ड कर्जन / Lord Curzon"],
+["WHO का मुख्यालय कहाँ है?","Where is the WHO headquartered?","जिनेवा / Geneva","न्यूयॉर्क / New York","पेरिस / Paris","वियना / Vienna"],
+["भारत की पहली रेलगाड़ी (1853) मुंबई से कहाँ तक चली?","India's first train (1853) ran from Mumbai to:","ठाणे / Thane","पुणे / Pune","कल्याण / Kalyan","बड़ौदा / Baroda"],
+["भारतीय संविधान में कितने मौलिक अधिकार हैं?","How many Fundamental Rights are in the Indian Constitution?","6","7","5","8"]
+);
+hardBank["General Science"].push(
+["मानव हृदय में कितने कक्ष होते हैं?","How many chambers does the human heart have?","4","2","3","5"],
+["सोडियम का परमाणु क्रमांक क्या है?","Atomic number of Sodium is:","11","12","10","9"],
+["ऊर्जा की SI इकाई क्या है?","SI unit of energy is:","जूल / Joule","वाट / Watt","न्यूटन / Newton","पास्कल / Pascal"],
+["निर्वात में प्रकाश की चाल लगभग कितनी है?","Speed of light in vacuum is about:","3×10⁸ m/s","3×10⁶ m/s","3×10⁵ m/s","3×10¹⁰ m/s"],
+["सबसे हल्की गैस कौन सी है?","The lightest gas is:","हाइड्रोजन / Hydrogen","हीलियम / Helium","नाइट्रोजन / Nitrogen","ऑक्सीजन / Oxygen"],
+["DNA का पूर्ण रूप क्या है?","Full form of DNA is:","Deoxyribonucleic Acid","Dinucleic Acid","Deoxyribose Nucleic Amino","Double Nucleic Acid"],
+["विटामिन C की कमी से कौन सा रोग होता है?","Deficiency of Vitamin C causes:","स्कर्वी / Scurvy","रिकेट्स / Rickets","बेरीबेरी / Beriberi","रतौंधी / Night blindness"],
+["इंद्रधनुष बनने में प्रकाश की कौन सी घटना होती है?","Which phenomenon of light forms a rainbow?","विक्षेपण / Dispersion","व्यतिकरण / Interference","विवर्तन / Diffraction","ध्रुवण / Polarisation"],
+["लार में कौन सा एंजाइम पाया जाता है?","Which enzyme is present in saliva?","एमाइलेज़ / Amylase","पेप्सिन / Pepsin","लाइपेज़ / Lipase","ट्रिप्सिन / Trypsin"],
+["जल का क्वथनांक केल्विन में कितना है?","Boiling point of water in Kelvin is:","373 K","273 K","100 K","473 K"]
+);
+hardBank["Computer Awareness"].push(
+["CPU का पूर्ण रूप क्या है?","Full form of CPU:","Central Processing Unit","Central Program Unit","Control Processing Unit","Central Peripheral Unit"],
+["1 बाइट में कितने बिट होते हैं?","How many bits are in 1 byte?","8","4","16","2"],
+["इनमें से कौन वेब ब्राउज़र नहीं है?","Which is NOT a web browser?","MS Word","Chrome","Firefox","Edge"],
+["Ctrl + C का कार्य क्या है?","Ctrl + C is used to:","कॉपी / Copy","कट / Cut","पेस्ट / Paste","अनडू / Undo"],
+["WWW का आविष्कार किसने किया?","Who invented the World Wide Web?","टिम बर्नर्स-ली / Tim Berners-Lee","बिल गेट्स / Bill Gates","स्टीव जॉब्स / Steve Jobs","विंटन सर्फ / Vint Cerf"],
+["इनमें से कौन इनपुट डिवाइस नहीं है?","Which is NOT an input device?","प्रिंटर / Printer","कीबोर्ड / Keyboard","माउस / Mouse","स्कैनर / Scanner"],
+[".xlsx फ़ाइल किस सॉफ़्टवेयर की होती है?","A .xlsx file belongs to:","MS Excel","MS Word","PowerPoint","MS Access"],
+["SSD का पूर्ण रूप क्या है?","Full form of SSD:","Solid State Drive","Super Speed Drive","Static Storage Disk","Solid Storage Data"],
+["कंप्यूटर वायरस क्या है?","A computer virus is:","हानिकारक प्रोग्राम / A malicious program","एक हार्डवेयर / A hardware","एक ब्राउज़र / A browser","फ़ाइल सिस्टम / A file system"],
+["Gmail क्या है?","Gmail is a:","ईमेल सेवा / Email service","सर्च इंजन / Search engine","ऑपरेटिंग सिस्टम / Operating system","सोशल मीडिया / Social media"]
+);
+hardBank["English Language"].push(
+["'Enormous' का समानार्थी चुनें।","Choose the synonym of 'Enormous'.","Huge","Tiny","Weak","Calm"],
+["'Expand' का विलोम चुनें।","Choose the antonym of 'Expand'.","Contract","Grow","Extend","Stretch"],
+["मुहावरा 'Piece of cake' का अर्थ?","Meaning of 'Piece of cake':","Very easy","Delicious","Costly","Difficult"],
+["एक शब्द: 'जनता द्वारा शासन'","One word: 'Government by the people'","Democracy","Autocracy","Monarchy","Anarchy"],
+["रिक्त स्थान भरें: She is good ___ Maths.","Fill in the blank: She is good ___ Maths.","at","in","on","with"],
+["'Child' का बहुवचन चुनें।","Choose the plural of 'Child'.","Children","Childs","Childrens","Childes"],
+["रिक्त स्थान भरें: I saw ___ elephant.","Fill in the blank: I saw ___ elephant.","an","a","some","any"],
+["'Choose' का भूतकाल (V2) चुनें।","Choose the past tense (V2) of 'Choose'.","Chose","Choosed","Chosen","Choosen"],
+["'Brave' का समानार्थी चुनें।","Choose the synonym of 'Brave'.","Courageous","Timid","Lazy","Weak"],
+["सही वाक्य चुनें।","Choose the correct sentence.","He doesn't like tea.","He don't likes tea.","He not like tea.","He doesn't likes tea."]
+);
+hardBank["Hindi/English"] = hardBank["English Language"].concat([
+["'आकाश' का पर्यायवाची चुनें।","Hindi synonym of 'आकाश' (sky):","गगन / Gagan","धरा / Dhara","अनल / Anal","सरिता / Sarita"],
+["'अंधकार' का विलोम चुनें।","Antonym of 'अंधकार' (darkness):","प्रकाश / Light","तम / Tam","रात्रि / Night","तिमिर / Timir"],
+["'दिनकर' का अर्थ क्या है?","What does 'दिनकर' mean?","सूर्य / Sun","चंद्रमा / Moon","तारा / Star","बादल / Cloud"],
+["'नीरज' का अर्थ क्या है?","What does 'नीरज' mean?","कमल / Lotus","जल / Water","मछली / Fish","बादल / Cloud"],
+["'सत्य' का विलोम चुनें।","Antonym of 'सत्य' (truth):","असत्य / Falsehood","सच / Sach","यथार्थ / Reality","तथ्य / Fact"],
+["'विद्यालय' का संधि-विच्छेद चुनें।","Split the sandhi 'विद्यालय':","विद्या + आलय","विद + यालय","विद्या + लय","विद्य + आलय"],
+["'जल' का पर्यायवाची चुनें।","Synonym of 'जल' (water):","नीर / Neer","अनल / Fire","समीर / Wind","व्योम / Sky"],
+["'राजा' का स्त्रीलिंग रूप क्या है?","Feminine of 'राजा':","रानी / Queen","राजी / Raji","राजिनी / Rajini","राजा / Raja"],
+["'सूर्य' का पर्यायवाची चुनें।","Synonym of 'सूर्य' (sun):","भास्कर / Bhaskar","शशि / Moon","तारा / Star","नभ / Sky"],
+["'सुख' का विलोम चुनें।","Antonym of 'सुख' (happiness):","दुःख / Sorrow","आनंद / Joy","हर्ष / Delight","मोद / Mod"]
+]);
+const examLevel = {"SSC CGL":3,"Bank":3,"SSC CHSL":2,"Daroga":2,"Delhi Police":2,"Railway":2,"Police":1,"SSC GD":1,"Agniveer":1};
+const hardCount = {3:12,2:9,1:6};
+const bi = (hi,en) => hi + "\n" + en;
+const hardMathTypes = [
+  () => { const P = rnd(2,20)*100; return { q: bi(`₹${P} पर 10% वार्षिक दर से 2 वर्ष का चक्रवृद्धि ब्याज कितना होगा?`, `Find the compound interest on ₹${P} at 10% p.a. for 2 years.`), ans: P*21/100, fmt: n => `₹${n}` }; },
+  () => { const a = pick([10,20,25,30]), b = pick([10,20,40,50]); return { q: bi(`${a}% और ${b}% की दो क्रमिक छूट के बराबर एकल छूट (%) क्या है?`, `What single discount (%) equals successive discounts of ${a}% and ${b}%?`), ans: a+b-a*b/100, fmt: n => `${n}%` }; },
+  () => { const p = pick([[12,6],[20,5],[30,6],[15,10],[10,40],[24,8]]); return { q: bi(`पाइप A टंकी को ${p[0]} घंटे में और पाइप B ${p[1]} घंटे में भरता है। दोनों साथ खोलने पर टंकी कितने घंटे में भरेगी?`, `Pipe A fills a tank in ${p[0]} hours and pipe B in ${p[1]} hours. How long will both together take?`), ans: p[0]*p[1]/(p[0]+p[1]), fmt: n => `${n} ${Number.isInteger(n)?'':''}घंटे / hrs` }; },
+  () => { const n = rnd(20,60); return { q: bi(`पहली ${n} प्राकृत संख्याओं का योग क्या है?`, `What is the sum of the first ${n} natural numbers?`), ans: n*(n+1)/2 }; },
+  () => { const u = pick([8,10,12,15]), v = pick([2,3,4,5]), t = rnd(2,6); return { q: bi(`नाव की स्थिर जल में चाल ${u} किमी/घं और धारा की चाल ${v} किमी/घं है। धारा की दिशा में ${(u+v)*t} किमी जाने में कितना समय लगेगा?`, `A boat's speed in still water is ${u} km/h and the stream is ${v} km/h. Time to go ${(u+v)*t} km downstream?`), ans: t, fmt: n => `${n} घंटे / hrs` }; },
+  () => { const cp = rnd(5,40)*100, p = pick([20,25,40]); return { q: bi(`एक वस्तु ${p}% लाभ पर ₹${cp*(100+p)/100} में बिकती है। उसका क्रय मूल्य क्या है?`, `An article sold at ${p}% profit gives ₹${cp*(100+p)/100}. What is its cost price?`), ans: cp, fmt: n => `₹${n}` }; },
+  () => { const a = pick([3,4,5,6,7]); const k = a*a; return { q: bi(`यदि x + 1/x = ${a} है, तो x² + 1/x² का मान क्या होगा?`, `If x + 1/x = ${a}, find x² + 1/x².`), ans: k-2 }; },
+  () => { const n = pick([6,8,9,10,12]); return { q: bi(`${n} भुजाओं वाले सम बहुभुज के एक आंतरिक कोण का मान क्या है?`, `What is each interior angle of a regular polygon with ${n} sides?`), ans: 180-360/n, fmt: n => `${n}°` }; }
+];
+function hardMath(count) {
+  const out=[], seen=new Set(); let g=0, types=[];
+  while (out.length<count && g++<400) {
+    if (!types.length) types = shuffleArray([...hardMathTypes]);
+    const it = types.pop()();
+    if (seen.has(it.q)) continue; seen.add(it.q);
+    const o = numOptions(it.ans, it.fmt);
+    out.push({q:it.q, options:o.options, answer:o.answer});
+  }
+  return out;
+}
+
+hardMathTypes.push(
+  () => { const n = rnd(2,25)*20, p = pick([5,12,15,25,35,40]); return { q: bi(`${n} का ${p}% कितना होगा?`, `What is ${p}% of ${n}?`), ans: n*p/100 }; },
+  () => { const P = rnd(2,20)*100, R = rnd(5,12), T = rnd(2,5); return { q: bi(`₹${P} पर ${R}% वार्षिक दर से ${T} वर्ष का साधारण ब्याज?`, `Simple interest on ₹${P} at ${R}% p.a. for ${T} years?`), ans: P*R*T/100, fmt: n => `₹${n}` }; },
+  () => { const a = rnd(10,40), d = rnd(2,6); return { q: bi(`${a}, ${a+d}, ${a+2*d}, ${a+3*d} और ${a+4*d} का औसत क्या है?`, `Find the average of ${a}, ${a+d}, ${a+2*d}, ${a+3*d} and ${a+4*d}.`), ans: a+2*d }; },
+  () => { const v = pick([10,15,20,25]), t = rnd(6,12); return { q: bi(`${v*t} मीटर लंबी रेलगाड़ी एक खंभे को ${t} सेकंड में पार करती है। उसकी चाल किमी/घं में?`, `A ${v*t} m long train crosses a pole in ${t} seconds. Its speed in km/h?`), ans: v*3.6, fmt: n => `${n} km/h` }; },
+  () => { const a = rnd(1,5), b = rnd(a+1,7), k = rnd(5,20); return { q: bi(`₹${(a+b)*k} को ${a}:${b} के अनुपात में बाँटने पर दूसरा भाग क्या होगा?`, `Divide ₹${(a+b)*k} in the ratio ${a}:${b}. What is the second share?`), ans: b*k, fmt: n => `₹${n}` }; },
+  () => { const g = rnd(2,6), x = pick([2,3,4,5]), y = pick([7,9,11]); return { q: bi(`${g*x} और ${g*y} का ल.स. (LCM) क्या है?`, `Find the LCM of ${g*x} and ${g*y}.`), ans: g*x*y }; },
+  () => { const n = rnd(12,35); return { q: bi(`${n*n} का वर्गमूल क्या है?`, `What is the square root of ${n*n}?`), ans: n }; }
+);
+
+
+// Real exam pattern: t = minutes, neg = negative marks per wrong answer (per 1 mark), c = questions per subject (same order as examConfig subjects)
+const examSpec = {
+  "SSC CGL":      { t: 60,  neg: 0.25, c: [25, 25, 25, 25] },
+  "SSC CHSL":     { t: 60,  neg: 0.25, c: [25, 25, 25, 25] },
+  "SSC GD":       { t: 60,  neg: 0.25, c: [20, 20, 20, 20] },
+  "Daroga":       { t: 120, neg: 0,    c: [40, 30, 45, 45] },
+  "Police":       { t: 120, neg: 0,    c: [38, 37, 38, 37] },
+  "Railway":      { t: 90,  neg: 1/3,  c: [20, 20, 30, 30] },
+  "Agniveer":     { t: 60,  neg: 0.25, c: [13, 12, 12, 13] },
+  "Bank":         { t: 60,  neg: 0.25, c: [30, 30, 30, 10] },
+  "Delhi Police": { t: 90,  neg: 0.25, c: [50, 25, 15, 10] }
+};
+function generate100Questions(examName) {
+  const cfg = examConfig[examName] || examConfig["Police"];
+  const spec = examSpec[examName] || examSpec["Police"];
+  const out = [], used = new Set();
+  let deficit = 0;
+  const add = (subject, t) => {
+    if (used.has(t.q)) return false;
+    used.add(t.q);
+    out.push({ id: out.length, subject: subject, q: `[Q.${out.length + 1}] ${t.q}`, options: t.options, answer: t.answer });
+    return true;
+  };
+  const fromBank = h => ({ q: bi(h[0], h[1]), options: shuffleArray([h[2], h[3], h[4], h[5]]), answer: h[2] });
+  cfg.subjects.forEach((subject, idx) => {
+    const need = spec.c[idx]; let got = 0;
+    let items;
+    if (subject === "Mathematics") items = hardMath(need * 2);
+    else if (subject === "Reasoning") items = generateReasoningQuestions(need * 2, used);
+    else items = shuffleArray([...(hardBank[subject] || [])]).map(fromBank);
+    items.forEach(t => { if (got < need && add(subject, t)) got++; });
+    deficit += need - got;
+  });
+  if (deficit > 0) {
+    const pool = [];
+    ["General Knowledge", "General Science", "Computer Awareness"].filter(x => cfg.subjects.includes(x))
+      .forEach(sub => hardBank[sub].forEach(h => pool.push([sub, h])));
+    shuffleArray(pool).forEach(p => { if (deficit > 0 && add(p[0], fromBank(p[1]))) deficit--; });
+  }
+  let g = 0;
+  while (deficit > 0 && g++ < 60) {
+    const useM = g % 2 === 1;
+    const items = useM ? hardMath(12) : generateReasoningQuestions(12, used);
+    items.forEach(t => { if (deficit > 0 && add(useM ? "Mathematics" : "Reasoning", t)) deficit--; });
+  }
+  return out;
+}
+
+function toggleMenu() {
+  document.getElementById("side-menu").classList.toggle("open");
+  document.getElementById("side-overlay").classList.toggle("hidden");
+}
+function toggleSubCategory() {
+  document.getElementById("ssc-sub-list").classList.toggle("hidden");
+}
+
+function filterExams() {
+  let input = document.getElementById('search-input').value.toLowerCase();
+  let cards = document.getElementsByClassName('exam-item');
+  let sscWrapper = document.querySelector('.exam-card-wrapper');
+  sscWrapper.style.display = sscWrapper.innerText.toLowerCase().includes(input) ? "" : "none";
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].style.display = cards[i].innerHTML.toLowerCase().includes(input) ? "" : "none";
+  }
+}
+
+function startQuiz(examName) {
+  currentQuestions = generate100Questions(examName);
+  currentQuestionIndex = 0;
+  userAnswers = {};
+  marked = {};
+  currentExam = examName;
+  timeLeft = (examTime[examName] || 60) * 60;
+
+  document.getElementById("result-screen").classList.add("hidden");
+  document.getElementById("home-screen").classList.add("hidden");
+  document.getElementById("search-bar-box").classList.add("hidden");
+  document.getElementById("quiz-screen").classList.remove("hidden");
+  document.getElementById("quiz-title").innerText = examName + " Mock Test";
+  document.getElementById("timer").innerText = (examTime[examName] || 60) + ":00";
+
+  startTimer();
+  showQuestion();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    document.getElementById("timer").innerText = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    if (timeLeft <= 0) { clearInterval(timerInterval); endQuiz(); }
+  }, 1000);
+}
+
+function showQuestion() {
+  let currentQ = currentQuestions[currentQuestionIndex];
+  document.getElementById("subject-tag").innerText = `Subject: ${currentQ.subject}`;
+  document.getElementById("question-number").innerText = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+  document.getElementById("question-text").innerText = currentQ.q;
+
+  document.getElementById("prev-btn").disabled = (currentQuestionIndex === 0);
+  document.getElementById("next-btn").innerText = (currentQuestionIndex === currentQuestions.length - 1) ? "Finish 🏁" : "Next ▶";
+
+  const optionsContainer = document.getElementById("options-container");
+  optionsContainer.innerHTML = "";
+
+  currentQ.options.forEach(option => {
+    const button = document.createElement("button");
+    button.className = "option-btn";
+    button.innerText = option;
+    if (userAnswers[currentQuestionIndex] === option) button.classList.add("selected");
+    button.onclick = () => selectOption(button, option);
+    optionsContainer.appendChild(button);
+  });
+  renderPalette();
+}
+
+function renderPalette() {
+  const p = document.getElementById("palette");
+  p.innerHTML = "";
+  currentQuestions.forEach((_, i) => {
+    const b = document.createElement("button");
+    b.innerText = i + 1;
+    if (userAnswers[i] !== undefined) b.classList.add("ans");
+    if (marked[i]) b.classList.add("mrk");
+    if (i === currentQuestionIndex) b.classList.add("cur");
+    b.onclick = () => { currentQuestionIndex = i; showQuestion(); };
+    p.appendChild(b);
+  });
+}
+function toggleMark() { marked[currentQuestionIndex] = !marked[currentQuestionIndex]; renderPalette(); }
+
+function selectOption(buttonElement, selectedOption) {
+  document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+  buttonElement.classList.add('selected');
+  userAnswers[currentQuestionIndex] = selectedOption;
+  renderPalette();
+}
+
+function changeQuestion(direction) {
+  currentQuestionIndex += direction;
+  if (currentQuestionIndex >= currentQuestions.length) {
+    endQuiz();
+    return;
+  }
+  showQuestion();
+}
+
+function mk(tag, cls, txt) { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; }
+function endQuiz() {
+  clearInterval(timerInterval);
+  let right = 0, wrong = 0, skip = 0;
+  const subj = {};
+  const rv = document.getElementById("review-list");
+  rv.innerHTML = "";
+  currentQuestions.forEach((q, i) => {
+    const u = userAnswers[i];
+    subj[q.subject] = subj[q.subject] || { r: 0, w: 0, s: 0 };
+    let st;
+    if (u === undefined) { skip++; subj[q.subject].s++; st = "skip"; }
+    else if (u === q.answer) { right++; subj[q.subject].r++; st = "ok"; }
+    else { wrong++; subj[q.subject].w++; st = "bad"; }
+    const d = mk("div", "rv " + st, q.q);
+    const label = st === "ok" ? "✅ Correct / सही: " + q.answer
+      : st === "bad" ? "❌ Your answer / आपका उत्तर: " + u + "\n✔ Correct / सही उत्तर: " + q.answer
+      : "⏭ Not attempted / छोड़ा गया\n✔ Correct / सही उत्तर: " + q.answer;
+    d.appendChild(mk("small", "", label));
+    rv.appendChild(d);
+  });
+  const neg = (examSpec[currentExam] || {}).neg ?? 0.25;
+  const score = Math.round((right - wrong * neg) * 100) / 100;
+  document.getElementById("score-text").innerText = `आपका स्कोर / Score: ${score} / ${currentQuestions.length}`;
+  document.getElementById("score-detail").innerText = `✅ सही ${right}  •  ❌ गलत ${wrong}  •  ⏭ छोड़े ${skip}  •  Negative marking: ${neg ? "−" + Math.round(neg * 100) / 100 + " प्रति गलत उत्तर" : "नहीं / None"}`;
+  const ss = document.getElementById("subject-scores");
+  ss.innerHTML = "";
+  ss.appendChild(mk("div", "sec-title", "📊 Subject-wise / विषयवार"));
+  Object.keys(subj).forEach(k => {
+    const v = subj[k], r = mk("div", "stat-row");
+    r.appendChild(mk("span", "", k));
+    r.appendChild(mk("span", "", `✅${v.r}  ❌${v.w}  ⏭${v.s}  = ${Math.round((v.r - v.w * neg) * 100) / 100}`));
+    ss.appendChild(r);
+  });
+  let hist = [];
+  try {
+    hist = JSON.parse(localStorage.getItem("mockHistory") || "[]");
+    hist.unshift({ exam: currentExam, score: score, total: currentQuestions.length, date: new Date().toLocaleString() });
+    hist = hist.slice(0, 10);
+    localStorage.setItem("mockHistory", JSON.stringify(hist));
+  } catch (e) {}
+  const hb = document.getElementById("history-box");
+  hb.innerHTML = "";
+  if (hist.length) {
+    hb.appendChild(mk("div", "sec-title", "🕘 Last Tests / पिछले टेस्ट"));
+    hist.forEach(h => { const r = mk("div", "stat-row"); r.appendChild(mk("span", "", `${h.exam} • ${h.date}`)); r.appendChild(mk("span", "", `${h.score}/${h.total || 100}`)); hb.appendChild(r); });
+  }
+  document.getElementById("quiz-screen").classList.add("hidden");
+  document.getElementById("result-screen").classList.remove("hidden");
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  clearInterval(timerInterval);
+  document.getElementById("quiz-screen").classList.add("hidden");
+  document.getElementById("result-screen").classList.add("hidden");
+  document.getElementById("home-screen").classList.remove("hidden");
+  document.getElementById("search-bar-box").classList.remove("hidden");
+  document.getElementById("ssc-sub-list").classList.add("hidden");
+}
+</script>
+</body>
+</html>
